@@ -110,27 +110,63 @@ public class MainActivity extends AppCompatActivity {
     private void createData() {
         this.list = new ArrayList();
         WarikanGroup item1 = new WarikanGroup();
-        item1.setStatusName("偉い人");
+        item1.setStatusName("社長");
         item1.setWeight(2);
         item1.setAccountingTotal(key);
         list.add(item1);
 
         WarikanGroup item2 = new WarikanGroup();
-        item2.setStatusName("普通の人");
-        item2.setWeight(1.5);
+        item2.setStatusName("取締役");
+        item2.setWeight(1.9);
         item2.setAccountingTotal(key);
         list.add(item2);
 
         WarikanGroup item3 = new WarikanGroup();
-        item3.setStatusName("若手");
-        item3.setWeight(1);
+        item3.setStatusName("部長");
+        item3.setWeight(1.8);
         item3.setAccountingTotal(key);
         list.add(item3);
 
         WarikanGroup item4 = new WarikanGroup();
-        item4.setStatusName("その他");
-        item4.setWeight(1.2);
+        item4.setStatusName("部長代理");
+        item4.setWeight(1.7);
         item4.setAccountingTotal(key);
         list.add(item4);
+
+        WarikanGroup item5 = new WarikanGroup();
+        item5.setStatusName("課長");
+        item5.setWeight(1.6);
+        item5.setAccountingTotal(key);
+        list.add(item5);
+
+        WarikanGroup item6 = new WarikanGroup();
+        item6.setStatusName("課長代理");
+        item6.setWeight(1.5);
+        item6.setAccountingTotal(key);
+        list.add(item6);
+
+        WarikanGroup item7 = new WarikanGroup();
+        item7.setStatusName("係長");
+        item7.setWeight(1.4);
+        item7.setAccountingTotal(key);
+        list.add(item7);
+
+        WarikanGroup item8 = new WarikanGroup();
+        item8.setStatusName("主任");
+        item8.setWeight(1.4);
+        item8.setAccountingTotal(key);
+        list.add(item8);
+
+        WarikanGroup item9 = new WarikanGroup();
+        item9.setStatusName("一般");
+        item9.setWeight(1.2);
+        item9.setAccountingTotal(key);
+        list.add(item9);
+
+        WarikanGroup item10 = new WarikanGroup();
+        item10.setStatusName("若手");
+        item10.setWeight(1);
+        item10.setAccountingTotal(key);
+        list.add(item10);
     }
 }

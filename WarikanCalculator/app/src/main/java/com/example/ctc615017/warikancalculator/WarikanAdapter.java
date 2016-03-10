@@ -61,12 +61,15 @@ public class WarikanAdapter extends ArrayAdapter {
                         //double payment = totalPaymentMoney(item);
                         //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                     }
-                    if (items.get(0).getNumOfPeople() != 0) {
-                        double otherMoney = otherTotalMoney();
-                        int pay = (int)Math.ceil((items.get(0).getAccountingTotal() - otherMoney)/100/ items.get(0).getNumOfPeople()) * 100;
-                        items.get(0).setAmountOfMoney(pay);
-                    } else {
-                        items.get(0).setAmountOfMoney(0);
+                    for (int i = 0; i < items.size(); i++) {
+                        if (items.get(i).getNumOfPeople() != 0) {
+                            double otherMoney = otherTotalMoney(i + 1);
+                            int pay = (int) Math.ceil((items.get(i).getAccountingTotal() - otherMoney) / 100 / items.get(i).getNumOfPeople()) * 100;
+                            items.get(i).setAmountOfMoney(pay);
+                            break;
+                        } else if (items.get(i).getNumOfPeople() == 0) {
+                            items.get(i).setAmountOfMoney(0);
+                        }
                     }
                     summaryCount();
                 }
@@ -88,13 +91,17 @@ public class WarikanAdapter extends ArrayAdapter {
                             //double payment = totalPaymentMoney(item);
                             //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                         }
-                        if (items.get(0).getNumOfPeople() != 0) {
-                            double otherMoney = otherTotalMoney();
-                            int pay = (int)Math.ceil((items.get(0).getAccountingTotal() - otherMoney)/100/ items.get(0).getNumOfPeople()) * 100;
-                            items.get(0).setAmountOfMoney(pay);
-                        } else {
-                            items.get(0).setAmountOfMoney(0);
+                        for (int i = 0; i < items.size(); i++) {
+                            if (items.get(i).getNumOfPeople() != 0) {
+                                double otherMoney = otherTotalMoney(i + 1);
+                                int pay = (int)Math.ceil((items.get(i).getAccountingTotal() - otherMoney)/100/ items.get(i).getNumOfPeople()) * 100;
+                                items.get(i).setAmountOfMoney(pay);
+                                break;
+                            } else {
+                                items.get(i).setAmountOfMoney(0);
+                            }
                         }
+
                         summaryCount();
                     }
                 }
@@ -238,9 +245,9 @@ public class WarikanAdapter extends ArrayAdapter {
 
     }
 
-    public double otherTotalMoney() {
+    public double otherTotalMoney(int j) {
         double money = 0;
-        for (int i = 1; i < items.size(); i++) {
+        for (int i = j; i < items.size(); i++) {
             money += items.get(i).getAmountOfMoney() * items.get(i).getNumOfPeople();
         }
         return money;
