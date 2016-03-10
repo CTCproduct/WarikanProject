@@ -111,25 +111,25 @@ public class MainActivity extends AppCompatActivity {
         this.list = new ArrayList();
         WarikanGroup item1 = new WarikanGroup();
         item1.setStatusName("偉い人");
-        item1.setWeight(1);
+        item1.setWeight(2);
         item1.setAccountingTotal(key);
         list.add(item1);
 
         WarikanGroup item2 = new WarikanGroup();
         item2.setStatusName("普通の人");
-        item2.setWeight(0.5);
+        item2.setWeight(1.5);
         item2.setAccountingTotal(key);
         list.add(item2);
 
         WarikanGroup item3 = new WarikanGroup();
         item3.setStatusName("若手");
-        item3.setWeight(0.3);
+        item3.setWeight(1);
         item3.setAccountingTotal(key);
         list.add(item3);
 
         WarikanGroup item4 = new WarikanGroup();
         item4.setStatusName("その他");
-        item4.setWeight(0.4);
+        item4.setWeight(1.2);
         item4.setAccountingTotal(key);
         list.add(item4);
     }

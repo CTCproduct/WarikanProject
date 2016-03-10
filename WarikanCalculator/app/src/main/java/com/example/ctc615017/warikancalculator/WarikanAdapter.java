@@ -62,14 +62,13 @@ public class WarikanAdapter extends ArrayAdapter {
                         //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                     }
                     if (items.get(0).getNumOfPeople() != 0) {
-                        int otherMoney = otherTotalMoney();
-                        int pay = (int)Math.ceil((items.get(0).getAccountingTotal() - otherMoney)/100) / items.get(0).getNumOfPeople() * 100;
+                        double otherMoney = otherTotalMoney();
+                        int pay = (int)Math.ceil((items.get(0).getAccountingTotal() - otherMoney)/100/ items.get(0).getNumOfPeople()) * 100;
                         items.get(0).setAmountOfMoney(pay);
                     } else {
                         items.get(0).setAmountOfMoney(0);
                     }
                     summaryCount();
-                    //notifyDataSetChanged();
                 }
             });
 
@@ -89,6 +88,13 @@ public class WarikanAdapter extends ArrayAdapter {
                             //double payment = totalPaymentMoney(item);
                             //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                         }
+                        if (items.get(0).getNumOfPeople() != 0) {
+                            double otherMoney = otherTotalMoney();
+                            int pay = (int)Math.ceil((items.get(0).getAccountingTotal() - otherMoney)/100/ items.get(0).getNumOfPeople()) * 100;
+                            items.get(0).setAmountOfMoney(pay);
+                        } else {
+                            items.get(0).setAmountOfMoney(0);
+                        }
                         summaryCount();
                     }
                 }
@@ -101,8 +107,6 @@ public class WarikanAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     int num = item.addAmountOfMoney(100);
                     amountPayment_txt.setText(Integer.toString(num));
-                    //int num = Integer.parseInt(amountPayment_txt.getText().toString());
-                    //num = num + 1;
                     amountPayment_txt.setText(Integer.toString(num));
                     summaryCount();
                 }
@@ -113,7 +117,6 @@ public class WarikanAdapter extends ArrayAdapter {
             moneyMinus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //int num = Integer.parseInt(amountPayment_txt.getText().toString());
                     int num = item.getAmountOfMoney();
                     if (num > 0) {
                         num = item.subAmountOfMoney(100);
@@ -224,19 +227,19 @@ public class WarikanAdapter extends ArrayAdapter {
 
         if (totalWeight != 0) {
             if (i.getNumOfPeople() != 0) {
-                payment = i.getWeight() * i.getAccountingTotal() / totalWeight;
+                payment = i.getAccountingTotal() * i.getWeight()  / totalWeight;
             } else if (i.getNumOfPeople() == 0) {
                 payment = 0;
             }
         } else {
             payment = 0;
         }
-        i.setAmountOfMoney((int)Math.ceil(payment/100)*100);
+        i.setAmountOfMoney((int)Math.floor(payment / 100)*100);
 
     }
 
-    public int otherTotalMoney() {
-        int money = 0;
+    public double otherTotalMoney() {
+        double money = 0;
         for (int i = 1; i < items.size(); i++) {
             money += items.get(i).getAmountOfMoney() * items.get(i).getNumOfPeople();
         }
