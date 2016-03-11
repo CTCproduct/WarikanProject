@@ -10,7 +10,6 @@ public class WarikanGroup {
     private int numOfPeople = 0;
     private int amountOfMoney;
     private double weight;
-    private  int accountingTotal;
 
     //役職名取得
     public String getStatusName() {
@@ -62,16 +61,6 @@ public class WarikanGroup {
         return weight;
     }
 
-    //集金総額の値セット
-    public void setAccountingTotal(int accountingTotal) {
-        this.accountingTotal = accountingTotal;
-    }
-
-    //集金総額の値取得
-    public int getAccountingTotal() {
-        return accountingTotal;
-    }
-
     //Listの各支払額の下ボタン処理
     public int addAmountOfMoney(int addAmount) {
         return amountOfMoney += addAmount;
@@ -81,4 +70,5 @@ public class WarikanGroup {
     public int subAmountOfMoney(int subAmount) {
         return amountOfMoney -= subAmount;
     }
+
 }

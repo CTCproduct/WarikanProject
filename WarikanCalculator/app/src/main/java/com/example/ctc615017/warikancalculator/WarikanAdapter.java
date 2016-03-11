@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class WarikanAdapter extends ArrayAdapter {
     private ArrayList<WarikanGroup> items;
     private LayoutInflater inflater;
+    private static int unit = 1;
+    private  static int accountingTotal = 0;
 
     public WarikanAdapter(Context context, int textViewResourceId, ArrayList items) {
         super(context, textViewResourceId, items);
@@ -53,18 +55,15 @@ public class WarikanAdapter extends ArrayAdapter {
             peoplePlus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //WarikanGroup itemA = (WarikanGroup)v.getTag();
                     int num = item.addNumObPeople(1);
                     item.setNumOfPeople(num);
                     for (WarikanGroup item : items) {
                         totalPaymentMoney(item);
-                        //double payment = totalPaymentMoney(item);
-                        //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                     }
                     for (int i = 0; i < items.size(); i++) {
                         if (items.get(i).getNumOfPeople() != 0) {
                             double otherMoney = otherTotalMoney(i + 1);
-                            int pay = (int) Math.ceil((items.get(i).getAccountingTotal() - otherMoney) / 100 / items.get(i).getNumOfPeople()) * 100;
+                            int pay = (int) Math.ceil((getAccountingTotal() - otherMoney) / WarikanAdapter.getUnit() / items.get(i).getNumOfPeople()) * WarikanAdapter.getUnit();
                             items.get(i).setAmountOfMoney(pay);
                             break;
                         } else if (items.get(i).getNumOfPeople() == 0) {
@@ -80,21 +79,17 @@ public class WarikanAdapter extends ArrayAdapter {
             peopleMinus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //int num = Integer.parseInt(numOfPeople_txt.getText().toString());
                     int num = item.getNumOfPeople();
                     if (num > 0) {
                         num = item.subNumObPeople(1);
                         item.setNumOfPeople(num);
                         for (WarikanGroup item : items) {
                             totalPaymentMoney(item);
-                            //totalPaymentMoney(item);
-                            //double payment = totalPaymentMoney(item);
-                            //item.setAmountOfMoney((int)Math.ceil(payment/100)*100);
                         }
                         for (int i = 0; i < items.size(); i++) {
                             if (items.get(i).getNumOfPeople() != 0) {
                                 double otherMoney = otherTotalMoney(i + 1);
-                                int pay = (int)Math.ceil((items.get(i).getAccountingTotal() - otherMoney)/100/ items.get(i).getNumOfPeople()) * 100;
+                                int pay = (int)Math.ceil((getAccountingTotal() - otherMoney)/ getUnit() / items.get(i).getNumOfPeople()) * getUnit();
                                 items.get(i).setAmountOfMoney(pay);
                                 break;
                             } else {
@@ -112,7 +107,7 @@ public class WarikanAdapter extends ArrayAdapter {
             moneyPlus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int num = item.addAmountOfMoney(100);
+                    int num = item.addAmountOfMoney(getUnit());
                     amountPayment_txt.setText(Integer.toString(num));
                     amountPayment_txt.setText(Integer.toString(num));
                     summaryCount();
@@ -126,7 +121,7 @@ public class WarikanAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     int num = item.getAmountOfMoney();
                     if (num > 0) {
-                        num = item.subAmountOfMoney(100);
+                        num = item.subAmountOfMoney(getUnit());
                         amountPayment_txt.setText(Integer.toString(num));
                         summaryCount();
                     }
@@ -156,75 +151,7 @@ public class WarikanAdapter extends ArrayAdapter {
         }
     }
 
-
-
-    /*public void totalPaymentMoney() {
-        double payment = 0;
-        double max = 0;
-        int ans = 0;
-        int totalMenber = 0;
-        int member = 0;
-        for (WarikanGroup item : items) {
-            if( item.getWeight() > max ){
-                max = item.getWeight();
-            }
-        }
-
-        for (WarikanGroup item : items) {
-            totalMenber += item.getWeight() * item.getNumOfPeople();
-
-        }
-
-        for (WarikanGroup item : items) {
-            if (item.getWeight() != max) {
-                if (item.getNumOfPeople() != 0) {
-                    payment = Math.round(item.getAccountingTotal() / 100 / item.getNumOfPeople() * item.getWeight()) * 100;
-                    item.setAmountOfMoney((int) Math.ceil(payment));
-                    member += item.getNumOfPeople();
-                    ans += payment;
-                } else {
-                    item.setAmountOfMoney(0);
-                }
-            }
-            if (item.getWeight() == max){
-                if (item.getNumOfPeople() != 0) {
-                    payment = item.getAccountingTotal() - ans * (totalMenber - member) / item.getNumOfPeople();
-                    item.setAmountOfMoney((int) Math.ceil(payment));
-                } else {
-                    item.setAmountOfMoney(0);
-                }
-            }
-        }
-
-    }*/
-
-    /*public void minTotalPaymentMoney(WarikanGroup i) {
-        double payment = 0;
-        double min = 10;
-        int ans = 0;
-        for (WarikanGroup item : items) {
-            if( item.getWeight() < min ){
-                min = item.getWeight();
-            }
-        }
-        if (i.getWeight() == min) {
-            i.setAmountOfMoney(0);
-            double amoManey =0;
-            for (WarikanGroup item : items) {
-                if (item.getNumOfPeople() != 0) {
-                    amoManey += item.getAmountOfMoney() * item.getNumOfPeople();
-                }
-            }
-            if (i.getNumOfPeople() != 0) {
-                payment = (i.getAccountingTotal() - amoManey) / i.getNumOfPeople();
-            } else {
-                payment = 0;
-            }
-            ans = (int)Math.ceil(payment/100)*100;
-            i.setAmountOfMoney(ans);
-        }
-    }*/
-
+    //各役職者の支払金額(1人あたり)
     public void totalPaymentMoney(WarikanGroup i) {
         double totalWeight = 0;
         double payment = 0;
@@ -234,17 +161,18 @@ public class WarikanAdapter extends ArrayAdapter {
 
         if (totalWeight != 0) {
             if (i.getNumOfPeople() != 0) {
-                payment = i.getAccountingTotal() * i.getWeight()  / totalWeight;
+                payment = getAccountingTotal() * i.getWeight()  / totalWeight;
             } else if (i.getNumOfPeople() == 0) {
                 payment = 0;
             }
         } else {
             payment = 0;
         }
-        i.setAmountOfMoney((int)Math.floor(payment / 100)*100);
+        i.setAmountOfMoney((int)Math.floor(payment / WarikanAdapter.getUnit()) * WarikanAdapter.getUnit());
 
     }
 
+    //重み最大値以外の役職者の支払金額合計
     public double otherTotalMoney(int j) {
         double money = 0;
         for (int i = j; i < items.size(); i++) {
@@ -253,24 +181,23 @@ public class WarikanAdapter extends ArrayAdapter {
         return money;
     }
 
-    /*public double totalPaymentMoney(WarikanGroup i) {
-        double totalWeight = 0;
-        double payment = 0;
-        for (WarikanGroup item : items) {
-            totalWeight += item.getWeight() * item.getNumOfPeople();
-        }
+    //単位の取得
+    public static int getUnit() {
+        return unit;
+    }
 
-        if (totalWeight != 0) {
-            if (i.getNumOfPeople() != 0) {
-                //for (WarikanGroup item : items) {
-                    payment = i.getWeight() * i.getAccountingTotal() / totalWeight;
-                //}
-            } else if (i.getNumOfPeople() == 0) {
-                payment = 0;
-            }
-        } else {
-            payment = 0;
-        }
-        return payment;
-    }*/
+    //単位をセット
+    public static void setUnit(int unit) {
+        WarikanAdapter.unit = unit;
+    }
+
+    //会計総額の値セット
+    public static void setAccountingTotal(int accountingTotal) {
+        WarikanAdapter.accountingTotal = accountingTotal;
+    }
+
+    //会計総額の値取得
+    public static int getAccountingTotal() {
+        return accountingTotal;
+    }
 }
