@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Calculator"></activity>
+        <activity android:name=".WarikanConfig"></activity>
     </application>
 
 </manifest>

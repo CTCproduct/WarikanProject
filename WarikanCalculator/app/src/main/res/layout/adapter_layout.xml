@@ -13,7 +13,7 @@
             android:layout_width="250px"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="偉い人"
+            android:text=""
             android:id="@+id/statusTxt" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.1" >
 
-            <Button
+<!--            <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                 android:textSize="30px"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="▼"
-                android:id="@+id/moneyMinusBtn" />
+                android:id="@+id/moneyMinusBtn" /> -->
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
