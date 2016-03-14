@@ -61,7 +61,7 @@ public class WarikanGroup {
         return weight;
     }
 
-    //Listの各支払額の下ボタン処理
+   /* //Listの各支払額の下ボタン処理
     public int addAmountOfMoney(int addAmount) {
         return amountOfMoney += addAmount;
     }
@@ -69,6 +69,6 @@ public class WarikanGroup {
     //Listの各支払額の上ボタン処理
     public int subAmountOfMoney(int subAmount) {
         return amountOfMoney -= subAmount;
-    }
+    }*/
 
 }

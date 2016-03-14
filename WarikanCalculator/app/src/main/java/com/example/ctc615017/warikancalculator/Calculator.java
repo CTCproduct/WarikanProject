@@ -20,9 +20,6 @@ public class Calculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        Intent intent = getIntent();
-
-
         final TextView acc_txt = (TextView)findViewById(R.id.accountingTxt);
         recentOperator = R.id.equalBtn;
 
@@ -245,7 +242,6 @@ public class Calculator extends AppCompatActivity {
     }
 
     public int calc(int operator, int value1, int value2) {
-        int result = 0;
         switch (operator) {
             case R.id.plusBtn:
                 return value1 + value2;

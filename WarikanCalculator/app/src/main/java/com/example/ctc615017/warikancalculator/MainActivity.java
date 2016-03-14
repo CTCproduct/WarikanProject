@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 collectMoney_txt.setText("0");
                 people_num.setText("0");
                 key = 0;
+                adapter.totalPaymentMoney();
+                adapter.calcPaymentMoney();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -92,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 if (WarikanAdapter.getUnit() != 1) {
                     WarikanAdapter.setUnit(WarikanAdapter.getUnit() / 10);
                     unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
+                    adapter.totalPaymentMoney();
+                    adapter.calcPaymentMoney();
+                    adapter.summaryCount();
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -105,8 +111,21 @@ public class MainActivity extends AppCompatActivity {
                 if (WarikanAdapter.getUnit() != 1000) {
                     WarikanAdapter.setUnit(WarikanAdapter.getUnit() * 10);
                     unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
+                    adapter.totalPaymentMoney();
+                    adapter.calcPaymentMoney();
+                    adapter.summaryCount();
                     adapter.notifyDataSetChanged();
                 }
+            }
+        });
+
+        //configBtnの取得
+        Button config_btn = (Button)findViewById(R.id.configBtn);
+        config_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WarikanConfig.class);
+                startActivity(intent);
             }
         });
 

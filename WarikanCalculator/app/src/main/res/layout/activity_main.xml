@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="設定"
-            android:id="@+id/button"
+            android:id="@+id/configBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="0.2" />
 

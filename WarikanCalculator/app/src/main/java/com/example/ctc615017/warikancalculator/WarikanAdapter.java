@@ -33,8 +33,7 @@ public class WarikanAdapter extends ArrayAdapter {
         View view = convertView;
         if (view == null) {
         // 受け取ったビューがnullなら新しくビューを生成
-            view = inflater.inflate(R.layout.adapter, null);
-            //view.setTag(item);
+            view = inflater.inflate(R.layout.adapter_layout, null);
         }
 
         if (item != null) {
@@ -57,19 +56,8 @@ public class WarikanAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     int num = item.addNumObPeople(1);
                     item.setNumOfPeople(num);
-                    for (WarikanGroup item : items) {
-                        totalPaymentMoney(item);
-                    }
-                    for (int i = 0; i < items.size(); i++) {
-                        if (items.get(i).getNumOfPeople() != 0) {
-                            double otherMoney = otherTotalMoney(i + 1);
-                            int pay = (int) Math.ceil((getAccountingTotal() - otherMoney) / WarikanAdapter.getUnit() / items.get(i).getNumOfPeople()) * WarikanAdapter.getUnit();
-                            items.get(i).setAmountOfMoney(pay);
-                            break;
-                        } else if (items.get(i).getNumOfPeople() == 0) {
-                            items.get(i).setAmountOfMoney(0);
-                        }
-                    }
+                    totalPaymentMoney();
+                    calcPaymentMoney();
                     summaryCount();
                 }
             });
@@ -83,26 +71,14 @@ public class WarikanAdapter extends ArrayAdapter {
                     if (num > 0) {
                         num = item.subNumObPeople(1);
                         item.setNumOfPeople(num);
-                        for (WarikanGroup item : items) {
-                            totalPaymentMoney(item);
-                        }
-                        for (int i = 0; i < items.size(); i++) {
-                            if (items.get(i).getNumOfPeople() != 0) {
-                                double otherMoney = otherTotalMoney(i + 1);
-                                int pay = (int)Math.ceil((getAccountingTotal() - otherMoney)/ getUnit() / items.get(i).getNumOfPeople()) * getUnit();
-                                items.get(i).setAmountOfMoney(pay);
-                                break;
-                            } else {
-                                items.get(i).setAmountOfMoney(0);
-                            }
-                        }
-
+                        totalPaymentMoney();
+                        calcPaymentMoney();
                         summaryCount();
                     }
                 }
             });
 
-            //moneyPlusBtnのセット
+            /*//moneyPlusBtnのセット
             Button moneyPlus_btn = (Button) view.findViewById(R.id.moneyPlusBtn);
             moneyPlus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -126,7 +102,7 @@ public class WarikanAdapter extends ArrayAdapter {
                         summaryCount();
                     }
                 }
-            });
+            });*/
         }
         return view;
     }
@@ -139,7 +115,7 @@ public class WarikanAdapter extends ArrayAdapter {
         mChangeSummaryListener = listener;
     }
 
-    private void summaryCount() {
+    protected void summaryCount() {
         int summary = 0;
         int collectionTotal = 0;
         if (mChangeSummaryListener != null) {
@@ -152,33 +128,43 @@ public class WarikanAdapter extends ArrayAdapter {
     }
 
     //各役職者の支払金額(1人あたり)
-    public void totalPaymentMoney(WarikanGroup i) {
-        double totalWeight = 0;
-        double payment = 0;
-        for (WarikanGroup item : items) {
-            totalWeight += item.getWeight() * item.getNumOfPeople();
-        }
+    public void totalPaymentMoney() {
+        for (WarikanGroup i : items) {
+            double totalWeight = 0;
+            double payment = 0;
+            for (WarikanGroup item : items) {
+                totalWeight += item.getWeight() * item.getNumOfPeople();
+            }
 
-        if (totalWeight != 0) {
-            if (i.getNumOfPeople() != 0) {
-                payment = getAccountingTotal() * i.getWeight()  / totalWeight;
-            } else if (i.getNumOfPeople() == 0) {
+            if (totalWeight != 0) {
+                if (i.getNumOfPeople() != 0) {
+                    payment = getAccountingTotal() * i.getWeight() / totalWeight;
+                } else if (i.getNumOfPeople() == 0) {
+                    payment = 0;
+                }
+            } else {
                 payment = 0;
             }
-        } else {
-            payment = 0;
+            i.setAmountOfMoney((int) Math.floor(payment / WarikanAdapter.getUnit()) * WarikanAdapter.getUnit());
         }
-        i.setAmountOfMoney((int)Math.floor(payment / WarikanAdapter.getUnit()) * WarikanAdapter.getUnit());
-
     }
 
-    //重み最大値以外の役職者の支払金額合計
-    public double otherTotalMoney(int j) {
+    //重み最大値の役職者の支払金額
+    public void calcPaymentMoney() {
         double money = 0;
-        for (int i = j; i < items.size(); i++) {
-            money += items.get(i).getAmountOfMoney() * items.get(i).getNumOfPeople();
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getNumOfPeople() != 0) {
+                //重み最大値の役職者以外の支払金額
+                for (int j = i + 1; j < items.size(); j++) {
+                    money += items.get(j).getAmountOfMoney() * items.get(j).getNumOfPeople();
+                }
+                int pay = (int) Math.ceil((getAccountingTotal() - money) / WarikanAdapter.getUnit() / items.get(i).getNumOfPeople()) * WarikanAdapter.getUnit();
+                items.get(i).setAmountOfMoney(pay);
+                break;
+            } else if (items.get(i).getNumOfPeople() == 0) {
+                items.get(i).setAmountOfMoney(0);
+            }
         }
-        return money;
     }
 
     //単位の取得
