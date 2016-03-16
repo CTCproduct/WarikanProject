@@ -43,7 +43,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="27pt"
-            android:text="+"
+            android:text="@string/plus"
             android:id="@+id/plusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="0"
@@ -79,7 +79,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="25pt"
-            android:text="-"
+            android:text="@string/minus"
             android:id="@+id/minusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="1"
@@ -169,7 +169,7 @@
 
         <Button
             android:layout_height="80dp"
-            android:text="OK"
+            android:text="@string/ok"
             android:id="@+id/okBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="5"

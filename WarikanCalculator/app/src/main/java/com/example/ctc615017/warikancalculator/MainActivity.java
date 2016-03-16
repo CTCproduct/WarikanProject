@@ -28,8 +28,11 @@ public class MainActivity extends AppCompatActivity {
         final TextView unit_num = (TextView)findViewById(R.id.unitNum);
         unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
         final TextView collectMoney_txt = (TextView)findViewById(R.id.collectMoney);
+        collectMoney_txt.setText(Integer.toString(WarikanAdapter.getCollectTotal()));
         final TextView people_num = (TextView)findViewById(R.id.peopleNum);
-        final TextView dif_num = (TextView)findViewById(R.id.differenceNumTxt);
+        people_num.setText(Integer.toString(WarikanAdapter.getNumOfPeople()));
+        final TextView diff_num = (TextView)findViewById(R.id.differenceNumTxt);
+        diff_num.setText(Integer.toString(WarikanAdapter.getDiffMoney()));
 
 
         Intent intent = getIntent();
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             WarikanAdapter.setAccountingTotal(key);
             acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
             int diff = Integer.parseInt(collectMoney_txt.getText().toString()) - key;
-            dif_num.setText(Integer.toString(diff));
+            diff_num.setText(Integer.toString(diff));
         }
 
         //accountingBtnの取得
@@ -65,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 collectMoney_txt.setText(String.valueOf(collectionTotal));
                 //差額表示
                 int diff = collectionTotal - key;
-                dif_num.setText(String.valueOf(diff));
-                adapter.notifyDataSetChanged();
+                diff_num.setText(String.valueOf(diff));
+                //adapter.notifyDataSetChanged();
             }
         });
 
@@ -75,14 +78,15 @@ public class MainActivity extends AppCompatActivity {
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dif_num.setText("0");
-                WarikanAdapter.setAccountingTotal(0);
-                acc_txt.setText("0");
-                collectMoney_txt.setText("0");
-                people_num.setText("0");
+                //WarikanAdapter.setDiffMoney(0);
                 key = 0;
+                WarikanAdapter.setAccountingTotal(0);
+                acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
+                WarikanAdapter.setCollectTotal(0);
+                //WarikanAdapter.setNumOfPeople(0);
                 adapter.totalPaymentMoney();
                 adapter.calcPaymentMoney();
+                adapter.summaryCount();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         config_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WarikanConfig.class);
+                Intent intent = new Intent(MainActivity.this, WarikanPreference.class);
                 startActivity(intent);
             }
         });

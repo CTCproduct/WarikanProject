@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">WarikanCalculator</string>
+    <string name="acc_total">会計総額</string>
+    <string name="yen">円</string>
+    <string name="collect_total">集金総額</string>
+    <string name="people">人</string>
+    <string name="num_of_people">人数</string>
+    <string name="diff_money">差額</string>
+    <string name="reset">リセット</string>
+    <string name="config">設定</string>
+    <string name="unit">単位</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="ok">OK</string>
+    <string name="weight">重み設定</string>
+
 </resources>

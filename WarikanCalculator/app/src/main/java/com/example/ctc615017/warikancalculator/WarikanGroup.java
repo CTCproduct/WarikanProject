@@ -1,5 +1,7 @@
 package com.example.ctc615017.warikancalculator;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,8 @@ public class WarikanGroup {
     private int numOfPeople = 0;
     private int amountOfMoney;
     private double weight;
+    private boolean chkbox = false;
+    private double conf_weight = 0;
 
     //役職名取得
     public String getStatusName() {
@@ -60,6 +64,25 @@ public class WarikanGroup {
     public double getWeight() {
         return weight;
     }
+
+    //チェックボックス値セット
+    public void setSelected(boolean chkbox) {
+        this.chkbox = chkbox;
+    }
+
+    //チェックボックス値取得
+    public boolean getSelected() {
+        return chkbox;
+    }
+
+    public double addWeight(double addNum) {
+        return this.conf_weight = conf_weight + addNum;
+    }
+
+    public double subWeight(double subNum) {
+        return this.conf_weight = conf_weight - subNum;
+    }
+
 
    /* //Listの各支払額の下ボタン処理
     public int addAmountOfMoney(int addAmount) {

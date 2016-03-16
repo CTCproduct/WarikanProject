@@ -17,7 +17,10 @@ public class WarikanAdapter extends ArrayAdapter {
     private ArrayList<WarikanGroup> items;
     private LayoutInflater inflater;
     private static int unit = 1;
-    private  static int accountingTotal = 0;
+    private static int accountingTotal = 0;
+    private static int collectTotal = 0;
+    private static int numOfPeople =0;
+    private static int diffMoney = 0;
 
     public WarikanAdapter(Context context, int textViewResourceId, ArrayList items) {
         super(context, textViewResourceId, items);
@@ -185,5 +188,35 @@ public class WarikanAdapter extends ArrayAdapter {
     //会計総額の値取得
     public static int getAccountingTotal() {
         return accountingTotal;
+    }
+
+    //集金総額の値セット
+    public static void setCollectTotal(int collectTotal) {
+        WarikanAdapter.collectTotal = collectTotal;
+    }
+
+    //集金総額の値取得
+    public static int getCollectTotal() {
+        return collectTotal;
+    }
+
+    //合計人数の値セット
+    public static void setNumOfPeople(int numOfPeople) {
+        WarikanAdapter.numOfPeople = numOfPeople;
+    }
+
+    //合計人数の値取得
+    public static int getNumOfPeople() {
+        return numOfPeople;
+    }
+
+    //集金総額の値セット
+    public static void setDiffMoney(int diffMoney) {
+        WarikanAdapter.diffMoney = diffMoney;
+    }
+
+    //集金総額の値取得
+    public static int getDiffMoney() {
+        return diffMoney;
     }
 }
