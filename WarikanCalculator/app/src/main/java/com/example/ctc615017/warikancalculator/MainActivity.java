@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 //差額表示
                 int diff = collectionTotal - key;
                 diff_num.setText(String.valueOf(diff));
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
 

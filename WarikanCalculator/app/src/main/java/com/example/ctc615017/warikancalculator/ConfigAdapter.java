@@ -43,7 +43,7 @@ public class ConfigAdapter extends ArrayAdapter {
         if (item != null) {
 
             weight_txt = (TextView) view.findViewById(R.id.weight);
-            weight_txt.setText(String.valueOf(item.getWeight()));
+            //weight_txt.setText(String.valueOf(item.getWeight()));
             //weightPlusBtnのセット
             weightPlus_btn = (Button) view.findViewById(R.id.weightPlusBtn);
             weightPlus_btn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class ConfigAdapter extends ArrayAdapter {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     item.setSelected(isChecked);
-                    if(isChecked == false) {
+                    if (isChecked == false) {
                         item.setSelected(false);
                     } else {
                         item.setSelected(true);
@@ -94,6 +94,10 @@ public class ConfigAdapter extends ArrayAdapter {
             weight_txt.setEnabled(item.getSelected());
             president_chkbox.setChecked(item.getSelected());
             weightPlus_btn.setEnabled(item.getSelected());
+            for (WarikanGroup weightItem:items) {
+                String text = String.valueOf(items.get(items.indexOf(item)).getWeight());
+                weight_txt.setText(text);
+            }
         }
         return view;
     }
@@ -113,6 +117,40 @@ public class ConfigAdapter extends ArrayAdapter {
                 summary += item.getNumOfPeople();
             }
             mConfChangeSummaryListener.onConfChengeSummary(summary);
+        }
+    }
+
+    public String setWeightArray() {
+        StringBuffer buff = new StringBuffer();
+        for (WarikanGroup item : items) {
+            if (item.getSelected() == true) {
+                buff.append(item.getWeight() + ",");
+            }
+        }
+
+        String arrayItem = buff.toString();
+        return arrayItem;
+    }
+
+    public String setStatusArray() {
+        StringBuffer buff2 = new StringBuffer();
+        for (WarikanGroup item : items) {
+            if (item.getSelected() == true) {
+                buff2.append(item.getStatusName() + ",");
+            }
+        }
+
+        String arrayItem = buff2.toString();
+        return arrayItem;
+    }
+
+    public void setting(String name, double weight) {
+        for (WarikanGroup item : items) {
+            if (item.getStatusName().equals(name)) {
+                item.setWeight(weight);
+                item.setSelected(true);
+                break;
+            }
         }
     }
 
