@@ -119,10 +119,13 @@ public class WarikanPreference extends Activity {
 
     private void saveArray(String array, String PrefKey, SharedPreferences prefs) {
         String stringItem = null;
-        if(array != null) {
+        if(!array.equals("")) {
             stringItem = array.substring(0, array.length() - 1);
-            SharedPreferences.Editor editor = prefs.edit();
+            editor = prefs.edit();
             editor.putString(PrefKey, stringItem).commit();
+        } else {
+            editor = prefs.edit();
+            editor.putString(PrefKey, "").commit();
         }
     }
 

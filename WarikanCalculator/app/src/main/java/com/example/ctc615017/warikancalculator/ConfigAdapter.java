@@ -43,12 +43,13 @@ public class ConfigAdapter extends ArrayAdapter {
         if (item != null) {
 
             weight_txt = (TextView) view.findViewById(R.id.weight);
-            //weight_txt.setText(String.valueOf(item.getWeight()));
+            weight_txt.setText(String.valueOf(item.getWeight()));
             //weightPlusBtnのセット
             weightPlus_btn = (Button) view.findViewById(R.id.weightPlusBtn);
             weightPlus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     double num = item.addWeight(1);
                     item.setWeight(Math.floor(num)/10);
                     notifyDataSetChanged();
@@ -62,7 +63,7 @@ public class ConfigAdapter extends ArrayAdapter {
                 @Override
                 public void onClick(View v) {
                     double num = item.getWeight();
-                    if (num > 0) {
+                    if (num > 1) {
                         num = item.subWeight(1);
                         item.setWeight(Math.floor(num)/10);
                         notifyDataSetChanged();
@@ -94,10 +95,6 @@ public class ConfigAdapter extends ArrayAdapter {
             weight_txt.setEnabled(item.getSelected());
             president_chkbox.setChecked(item.getSelected());
             weightPlus_btn.setEnabled(item.getSelected());
-            for (WarikanGroup weightItem:items) {
-                String text = String.valueOf(items.get(items.indexOf(item)).getWeight());
-                weight_txt.setText(text);
-            }
         }
         return view;
     }

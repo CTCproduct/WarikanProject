@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="200px"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text=""
             android:id="@+id/weight"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge"

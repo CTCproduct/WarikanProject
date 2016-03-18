@@ -13,7 +13,7 @@ public class WarikanGroup {
     private int amountOfMoney;
     private double weight;
     private boolean chkbox = false;
-    private double conf_weight = 0;
+    private double conf_weight = 10;
 
     //役職名取得
     public String getStatusName() {
