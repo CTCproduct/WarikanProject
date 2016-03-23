@@ -1,6 +1,7 @@
 package com.example.ctc615017.warikancalculator;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,10 @@ public class ConfigAdapter extends ArrayAdapter {
     private Button weightPlus_btn;
     private Button weightMinus_btn;
     private CheckBox president_chkbox;
+    private WarikanGroup underItem;
+    private WarikanGroup upperItem;
+    private double underWeight = 1.0;
+    private double upperWeight = 1.0;
 
     public ConfigAdapter(Context context, int textViewResourceId, ArrayList items) {
         super(context, textViewResourceId, items);
@@ -31,9 +36,11 @@ public class ConfigAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        final int itemPosition = position;
         // データの取得
         final WarikanGroup item = (WarikanGroup)items.get(position);
-
+        Log.d("ConfigAdapter","position= "+position+", item= "+item.getStatusName()+item.getWeight());
         View view = convertView;
         if (view == null) {
         // 受け取ったビューがnullなら新しくビューを生成
@@ -49,9 +56,28 @@ public class ConfigAdapter extends ArrayAdapter {
             weightPlus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    double num = item.addWeight(1);
-                    item.setWeight(Math.floor(num)/10);
+                    //itemPositionより下にcheckboxがtrueの項目がいくつあるかカウント
+                    int count = 0;
+                    for (int i = itemPosition; i < 9; i++) {
+                        underItem = (WarikanGroup) items.get(i + 1);
+                        if (underItem.getSelected() == true) {
+                            count += 1;
+                        }
+                    }
+                    //itemPositionの上にあるcheckboxがtrueの項目のWeightを取得
+                    double num = item.getWeight();
+                    for (int i = itemPosition; i > 0; i--) {
+                        upperItem = (WarikanGroup) items.get(i - 1);
+                        if (upperItem.getSelected() == true) {
+                            upperWeight = upperItem.getWeight();
+                            break;
+                        }
+                    }
+                    //itemPositionのWeightを加算できるか判定、上の項目のWeightより重くならないよう加算
+                    if (0 < count && num < upperWeight || 0 < count && itemPosition == 0) {
+                        double sub_num = item.addWeight(1);
+                        item.setWeight(Math.floor(sub_num) / 10);
+                    }
                     notifyDataSetChanged();
                 }
             });
@@ -62,23 +88,33 @@ public class ConfigAdapter extends ArrayAdapter {
             weightMinus_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //itemPositionより下にある項目のWeightを取得
                     double num = item.getWeight();
-                    if (num > 1) {
+                    for (int i = itemPosition; i < 9; i++) {
+                        underItem = (WarikanGroup) items.get(i + 1);
+                        if (underItem.getSelected() == true) {
+                            underWeight = underItem.getWeight();
+                            break;
+                        }
+                    }
+                    //下の項目のWeightより小さくならないよう減算
+                    if (num > underWeight) {
                         num = item.subWeight(1);
-                        item.setWeight(Math.floor(num)/10);
+                        item.setWeight(Math.floor(num) / 10);
                         notifyDataSetChanged();
                     }
                 }
             });
 
 
-            //presidentのセット
+            //president_chkboxのセット
             president_chkbox = (CheckBox) view.findViewById(R.id.checkBox);
             president_chkbox.setText(item.getStatusName());
             if (president_chkbox != null) {
                 president_chkbox.setText(item.getStatusName());
             }
 
+            //チェック状態が変更された時
             president_chkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -92,14 +128,44 @@ public class ConfigAdapter extends ArrayAdapter {
                 }
 
             });
+            //チェックボックスがクリックされた時
+            president_chkbox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (item.getSelected() == true) {
+                        for (int i = itemPosition; i < 9; i++) {
+                            underItem = (WarikanGroup) items.get(i + 1);
+                            if (underItem.getSelected() == true) {
+                                item.setWeight(underItem.getWeight());
+                                break;
+                            }
+                        }
+                    } else if (item.getSelected() == false) {
+                        for (int i = itemPosition; i > 0; i--) {
+                            upperItem = (WarikanGroup) items.get(i - 1);
+                            if (upperItem.getSelected() == true) {
+                                item.setWeight(1.0);
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
             weight_txt.setEnabled(item.getSelected());
             president_chkbox.setChecked(item.getSelected());
             weightPlus_btn.setEnabled(item.getSelected());
+            for (int i = 9; i >= 0; i--) {
+                underItem = (WarikanGroup) items.get(i);
+                if (underItem.getSelected() == true) {
+                    underItem.setWeight(1.0);
+                    break;
+                }
+            }
         }
         return view;
     }
 
-    public interface ConfChangeSummaryListener {
+    /*public interface ConfChangeSummaryListener {
         void onConfChengeSummary(int summary);
     }
     private ConfChangeSummaryListener mConfChangeSummaryListener = null;
@@ -115,8 +181,9 @@ public class ConfigAdapter extends ArrayAdapter {
             }
             mConfChangeSummaryListener.onConfChengeSummary(summary);
         }
-    }
+    }*/
 
+    //checkboxがtrueである各項目のWeightをBufferに溜める
     public String setWeightArray() {
         StringBuffer buff = new StringBuffer();
         for (WarikanGroup item : items) {
@@ -129,6 +196,7 @@ public class ConfigAdapter extends ArrayAdapter {
         return arrayItem;
     }
 
+    //checkboxがtrueである各項目のStatusNameをBufferに溜める
     public String setStatusArray() {
         StringBuffer buff2 = new StringBuffer();
         for (WarikanGroup item : items) {
@@ -141,6 +209,7 @@ public class ConfigAdapter extends ArrayAdapter {
         return arrayItem;
     }
 
+    //同じStatusNameの項目にWeightとcheckboxの状態(true,false)をセット
     public void setting(String name, double weight) {
         for (WarikanGroup item : items) {
             if (item.getStatusName().equals(name)) {

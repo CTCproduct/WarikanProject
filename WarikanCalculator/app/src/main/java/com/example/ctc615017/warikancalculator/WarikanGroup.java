@@ -11,7 +11,7 @@ public class WarikanGroup {
     private String statusName;
     private int numOfPeople = 0;
     private int amountOfMoney;
-    private double weight;
+    private double weight = 1;
     private boolean chkbox = false;
     private double conf_weight = 10;
 
@@ -62,6 +62,11 @@ public class WarikanGroup {
 
     //各役職の重み取得
     public double getWeight() {
+        if (getSelected() == false && weight != 0) {
+            weight = 0;
+        } else if (getSelected() == true && weight == 0) {
+            weight = 1;
+        }
         return weight;
     }
 
@@ -76,11 +81,11 @@ public class WarikanGroup {
     }
 
     public double addWeight(double addNum) {
-        return this.conf_weight = conf_weight + addNum;
+        return this.weight = weight * 10 + addNum;
     }
 
     public double subWeight(double subNum) {
-        return this.conf_weight = conf_weight - subNum;
+        return this.weight = weight * 10 - subNum;
     }
 
 

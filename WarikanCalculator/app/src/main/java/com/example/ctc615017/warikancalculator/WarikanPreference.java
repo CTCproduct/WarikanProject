@@ -46,12 +46,12 @@ public class WarikanPreference extends Activity {
         conf_adapter = new ConfigAdapter(this, R.layout.config_baselayout, list);
         ListView listview = (ListView)findViewById(R.id.configList);
         listview.setAdapter(conf_adapter);
-        conf_adapter.setOnConfChangeSummaryListener(new ConfigAdapter.ConfChangeSummaryListener() {
+        /*conf_adapter.setOnConfChangeSummaryListener(new ConfigAdapter.ConfChangeSummaryListener() {
             @Override
             public void onConfChengeSummary(int summary) {
 
             }
-        });
+        });*/
 
         if (arrayItem != null) {
             for (int i = 0; i < arrayItem.length; i++) {
