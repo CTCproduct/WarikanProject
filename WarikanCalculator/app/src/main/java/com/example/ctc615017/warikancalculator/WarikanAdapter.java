@@ -1,6 +1,7 @@
 package com.example.ctc615017.warikancalculator;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,6 @@ public class WarikanAdapter extends ArrayAdapter {
             if (status_txt != null) {
                 status_txt.setText(item.getStatusName());
             }
-
             final TextView numOfPeople_txt = (TextView) view.findViewById(R.id.numOfPeople);
             numOfPeople_txt.setText(String.valueOf(item.getNumOfPeople()));
             final TextView amountPayment_txt = (TextView) view.findViewById(R.id.amountPayment);
@@ -81,31 +81,6 @@ public class WarikanAdapter extends ArrayAdapter {
                 }
             });
 
-            /*//moneyPlusBtnのセット
-            Button moneyPlus_btn = (Button) view.findViewById(R.id.moneyPlusBtn);
-            moneyPlus_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int num = item.addAmountOfMoney(getUnit());
-                    amountPayment_txt.setText(Integer.toString(num));
-                    amountPayment_txt.setText(Integer.toString(num));
-                    summaryCount();
-                }
-            });
-
-            //moneyMinusBtnのセット
-            Button moneyMinus_btn = (Button) view.findViewById(R.id.moneyMinusBtn);
-            moneyMinus_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int num = item.getAmountOfMoney();
-                    if (num > 0) {
-                        num = item.subAmountOfMoney(getUnit());
-                        amountPayment_txt.setText(Integer.toString(num));
-                        summaryCount();
-                    }
-                }
-            });*/
         }
         return view;
     }
@@ -200,19 +175,9 @@ public class WarikanAdapter extends ArrayAdapter {
         return collectTotal;
     }
 
-    //合計人数の値セット
-    public static void setNumOfPeople(int numOfPeople) {
-        WarikanAdapter.numOfPeople = numOfPeople;
-    }
-
     //合計人数の値取得
     public static int getNumOfPeople() {
         return numOfPeople;
-    }
-
-    //集金総額の値セット
-    public static void setDiffMoney(int diffMoney) {
-        WarikanAdapter.diffMoney = diffMoney;
     }
 
     //集金総額の値取得

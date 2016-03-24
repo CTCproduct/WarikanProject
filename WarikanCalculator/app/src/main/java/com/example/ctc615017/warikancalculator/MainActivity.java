@@ -1,6 +1,8 @@
 package com.example.ctc615017.warikancalculator;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<WarikanGroup> list = null;
     //WarikanAdapter
     private WarikanAdapter adapter = null;
-
     private int key = 0;
+
+    private String[] statusName = null;
+    private String[] weight = null;
+    private SharedPreferences prefs;
+    private static final String PREF_KEY = "Array";
+    private WarikanGroup item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +61,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //リストの取得
-        createData();
+
+        //重み設定の取得
+        prefs = getSharedPreferences(PREF_KEY, Activity.MODE_PRIVATE);
+        WarikanPreference warikanPref = new WarikanPreference();
+        statusName = warikanPref.getArray("StringStatusItem", prefs);
+        weight = warikanPref.getArray("StringWeightItem", prefs);
+
+        this.list = new ArrayList();
+        for (int i = 0; i < statusName.length; i++) {
+            item = new WarikanGroup();
+            item.setStatusName(statusName[i]);
+            item.setWeight(Double.valueOf(weight[i]));
+            item.setSelected(true);
+            list.add(item);
+        }
+        //リストにアダプターを設定
         adapter = new WarikanAdapter(this, R.layout.activity_main, list);
         ListView listview = (ListView)findViewById(R.id.WarikanList);
         listview.setAdapter(adapter);
@@ -78,12 +99,10 @@ public class MainActivity extends AppCompatActivity {
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //WarikanAdapter.setDiffMoney(0);
                 key = 0;
                 WarikanAdapter.setAccountingTotal(0);
                 acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
                 WarikanAdapter.setCollectTotal(0);
-                //WarikanAdapter.setNumOfPeople(0);
                 adapter.totalPaymentMoney();
                 adapter.calcPaymentMoney();
                 adapter.summaryCount();
@@ -133,59 +152,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    //リストのデータ
-    private void createData() {
-        this.list = new ArrayList();
-        WarikanGroup item1 = new WarikanGroup();
-        item1.setStatusName("社長");
-        item1.setWeight(2);
-        list.add(item1);
-
-        WarikanGroup item2 = new WarikanGroup();
-        item2.setStatusName("取締役");
-        item2.setWeight(1.9);
-        list.add(item2);
-
-        WarikanGroup item3 = new WarikanGroup();
-        item3.setStatusName("部長");
-        item3.setWeight(1.8);
-        list.add(item3);
-
-        WarikanGroup item4 = new WarikanGroup();
-        item4.setStatusName("部長代理");
-        item4.setWeight(1.7);
-        list.add(item4);
-
-        WarikanGroup item5 = new WarikanGroup();
-        item5.setStatusName("課長");
-        item5.setWeight(1.6);
-        list.add(item5);
-
-        WarikanGroup item6 = new WarikanGroup();
-        item6.setStatusName("課長代理");
-        item6.setWeight(1.5);
-        list.add(item6);
-
-        WarikanGroup item7 = new WarikanGroup();
-        item7.setStatusName("係長");
-        item7.setWeight(1.4);
-        list.add(item7);
-
-        WarikanGroup item8 = new WarikanGroup();
-        item8.setStatusName("主任");
-        item8.setWeight(1.4);
-        list.add(item8);
-
-        WarikanGroup item9 = new WarikanGroup();
-        item9.setStatusName("一般");
-        item9.setWeight(1.2);
-        list.add(item9);
-
-        WarikanGroup item10 = new WarikanGroup();
-        item10.setStatusName("若手");
-        item10.setWeight(1);
-        list.add(item10);
     }
 }

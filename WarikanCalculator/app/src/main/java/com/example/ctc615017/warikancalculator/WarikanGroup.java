@@ -13,7 +13,6 @@ public class WarikanGroup {
     private int amountOfMoney;
     private double weight = 1;
     private boolean chkbox = false;
-    private double conf_weight = 10;
 
     //役職名取得
     public String getStatusName() {
@@ -80,23 +79,14 @@ public class WarikanGroup {
         return chkbox;
     }
 
+    //設定画面:重みの加算
     public double addWeight(double addNum) {
         return this.weight = weight * 10 + addNum;
     }
 
+    //設定画面:重みの減算
     public double subWeight(double subNum) {
         return this.weight = weight * 10 - subNum;
     }
-
-
-   /* //Listの各支払額の下ボタン処理
-    public int addAmountOfMoney(int addAmount) {
-        return amountOfMoney += addAmount;
-    }
-
-    //Listの各支払額の上ボタン処理
-    public int subAmountOfMoney(int subAmount) {
-        return amountOfMoney -= subAmount;
-    }*/
 
 }

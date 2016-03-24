@@ -34,24 +34,12 @@ public class WarikanPreference extends Activity {
 
         arrayItem = getArray("StringStatusItem", prefs);
         arrayItem2 = getArray("StringWeightItem", prefs);
-        /*if (arrayItem != null) {
-            for (int i = 0; i < arrayItem.length; i++) {
-                item = new WarikanGroup();
-                item.setStatusName(arrayItem[i]);
-                item.setWeight(Double.valueOf(arrayItem2[i]));
-                list.add(item);
-            }
-        }*/
+
+        //conf_adapter設定
         createData();
         conf_adapter = new ConfigAdapter(this, R.layout.config_baselayout, list);
         ListView listview = (ListView)findViewById(R.id.configList);
         listview.setAdapter(conf_adapter);
-        /*conf_adapter.setOnConfChangeSummaryListener(new ConfigAdapter.ConfChangeSummaryListener() {
-            @Override
-            public void onConfChengeSummary(int summary) {
-
-            }
-        });*/
 
         if (arrayItem != null) {
             for (int i = 0; i < arrayItem.length; i++) {
@@ -59,6 +47,7 @@ public class WarikanPreference extends Activity {
             }
         }
 
+        //okBtnの取得
         ok_btn = (Button) findViewById(R.id.okBtn);
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +60,6 @@ public class WarikanPreference extends Activity {
                 finish();
             }
         });
-
     }
 
     //リストのデータ
@@ -117,6 +105,7 @@ public class WarikanPreference extends Activity {
         list.add(item10);
     }
 
+    //設定をeditorに保存
     private void saveArray(String array, String PrefKey, SharedPreferences prefs) {
         String stringItem = null;
         if(!array.equals("")) {
@@ -128,7 +117,7 @@ public class WarikanPreference extends Activity {
             editor.putString(PrefKey, "").commit();
         }
     }
-
+    //設定の取得
     public String[] getArray(String PrefKey, SharedPreferences prefs) {
         String stringItem = prefs.getString(PrefKey,"");
         if (stringItem != null && stringItem.length() != 0) {

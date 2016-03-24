@@ -51,6 +51,7 @@ public class ConfigAdapter extends ArrayAdapter {
 
             weight_txt = (TextView) view.findViewById(R.id.weight);
             weight_txt.setText(String.valueOf(item.getWeight()));
+
             //weightPlusBtnのセット
             weightPlus_btn = (Button) view.findViewById(R.id.weightPlusBtn);
             weightPlus_btn.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,6 @@ public class ConfigAdapter extends ArrayAdapter {
                     }
                 }
             });
-
 
             //president_chkboxのセット
             president_chkbox = (CheckBox) view.findViewById(R.id.checkBox);
@@ -165,24 +165,6 @@ public class ConfigAdapter extends ArrayAdapter {
         return view;
     }
 
-    /*public interface ConfChangeSummaryListener {
-        void onConfChengeSummary(int summary);
-    }
-    private ConfChangeSummaryListener mConfChangeSummaryListener = null;
-    public void setOnConfChangeSummaryListener(ConfChangeSummaryListener listener) {
-        mConfChangeSummaryListener = listener;
-    }
-
-    protected void summaryCount() {
-        int summary = 0;
-        if (mConfChangeSummaryListener != null) {
-            for (WarikanGroup item : items){
-                summary += item.getNumOfPeople();
-            }
-            mConfChangeSummaryListener.onConfChengeSummary(summary);
-        }
-    }*/
-
     //checkboxがtrueである各項目のWeightをBufferに溜める
     public String setWeightArray() {
         StringBuffer buff = new StringBuffer();
@@ -191,7 +173,6 @@ public class ConfigAdapter extends ArrayAdapter {
                 buff.append(item.getWeight() + ",");
             }
         }
-
         String arrayItem = buff.toString();
         return arrayItem;
     }
@@ -204,12 +185,11 @@ public class ConfigAdapter extends ArrayAdapter {
                 buff2.append(item.getStatusName() + ",");
             }
         }
-
         String arrayItem = buff2.toString();
         return arrayItem;
     }
 
-    //同じStatusNameの項目にWeightとcheckboxの状態(true,false)をセット
+    //同じStatusNameの項目にWeightとcheckboxの状態(true)をセット
     public void setting(String name, double weight) {
         for (WarikanGroup item : items) {
             if (item.getStatusName().equals(name)) {
@@ -219,5 +199,4 @@ public class ConfigAdapter extends ArrayAdapter {
             }
         }
     }
-
 }
