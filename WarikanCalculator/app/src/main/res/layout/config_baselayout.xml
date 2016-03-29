@@ -24,7 +24,11 @@
             android:layout_height="375dp"
             android:id="@+id/configList"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.6" />
+            android:layout_weight="0.6"
+            android:fadeScrollbars="false"
+            android:divider="#a8d8e7"
+            android:contextClickable="true"
+            android:dividerHeight="2dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -32,7 +36,8 @@
             android:text="@string/ok"
             android:id="@+id/okBtn"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.2"
+            android:background="@drawable/button_style"/>
 
     </LinearLayout>
 

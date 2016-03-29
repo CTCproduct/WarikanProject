@@ -14,23 +14,13 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
             android:id="@+id/checkBox"
             android:checked="false"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-        <!--<TextView
-            android:layout_width="250px"
-            android:layout_height="wrap_content"
-            android:text="役職"
-            android:id="@+id/status"
-            android:textAppearance="?android:attr/textAppearanceMedium" />-->
-
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <TextView
             android:layout_width="200px"
             android:layout_height="wrap_content"
-            android:text=""
             android:id="@+id/weight"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -46,20 +36,18 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30px"
-                android:text="▲"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/up"
                 android:id="@+id/weightPlusBtn" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30px"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="▼"
+                android:text="@string/down"
                 android:id="@+id/weightMinusBtn" />
         </LinearLayout>
-
 
     </LinearLayout>
 

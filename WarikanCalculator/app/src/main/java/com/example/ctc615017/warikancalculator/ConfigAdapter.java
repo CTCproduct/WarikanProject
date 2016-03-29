@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by ctc615017 on 2016/02/29.
+ * 設定画面のカスタムアダプタークラス
  */
 public class ConfigAdapter extends ArrayAdapter {
     private ArrayList<WarikanGroup> items;
@@ -73,6 +74,10 @@ public class ConfigAdapter extends ArrayAdapter {
                             upperWeight = upperItem.getWeight();
                             break;
                         }
+                        if (0 < count && i == 1) {
+                            double sub_num = item.addWeight(1);
+                            item.setWeight(Math.floor(sub_num) / 10);
+                        }
                     }
                     //itemPositionのWeightを加算できるか判定、上の項目のWeightより重くならないよう加算
                     if (0 < count && num < upperWeight || 0 < count && itemPosition == 0) {
@@ -126,7 +131,6 @@ public class ConfigAdapter extends ArrayAdapter {
                     }
                     notifyDataSetChanged();
                 }
-
             });
             //チェックボックスがクリックされた時
             president_chkbox.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +169,9 @@ public class ConfigAdapter extends ArrayAdapter {
         return view;
     }
 
-    //checkboxがtrueである各項目のWeightをBufferに溜める
+    /**
+     * checkboxがtrueである各項目のWeightをBufferに溜める
+     */
     public String setWeightArray() {
         StringBuffer buff = new StringBuffer();
         for (WarikanGroup item : items) {
@@ -177,7 +183,9 @@ public class ConfigAdapter extends ArrayAdapter {
         return arrayItem;
     }
 
-    //checkboxがtrueである各項目のStatusNameをBufferに溜める
+    /**
+     * checkboxがtrueである各項目のStatusNameをBufferに溜める
+     */
     public String setStatusArray() {
         StringBuffer buff2 = new StringBuffer();
         for (WarikanGroup item : items) {
@@ -189,7 +197,11 @@ public class ConfigAdapter extends ArrayAdapter {
         return arrayItem;
     }
 
-    //同じStatusNameの項目にWeightとcheckboxの状態(true)をセット
+    /**
+     * 同じStatusNameの項目にWeightとcheckboxの状態(true)をセット
+     * @param name プリファレンスに記録されたStatusName
+     * @param weight プリファレンスに記録されたweight
+     */
     public void setting(String name, double weight) {
         for (WarikanGroup item : items) {
             if (item.getStatusName().equals(name)) {

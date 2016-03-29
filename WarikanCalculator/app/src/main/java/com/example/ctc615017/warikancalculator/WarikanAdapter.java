@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Created by ctc615017 on 2016/02/29.
+ * MainActivityのカスタムアダプター
  */
 public class WarikanAdapter extends ArrayAdapter {
     private ArrayList<WarikanGroup> items;
@@ -89,6 +90,11 @@ public class WarikanAdapter extends ArrayAdapter {
         void onChengeSummary(int summary, int collectionTotal);
     }
     private ChangeSummaryListener mChangeSummaryListener = null;
+
+    /**
+     * 画面表示リスナー
+     * @param listener
+     */
     public void setOnChangeSummaryListener(ChangeSummaryListener listener) {
         mChangeSummaryListener = listener;
     }
@@ -105,7 +111,9 @@ public class WarikanAdapter extends ArrayAdapter {
         }
     }
 
-    //各役職者の支払金額(1人あたり)
+    /**
+     * 各役職者の支払金額(1人あたり)
+     */
     public void totalPaymentMoney() {
         for (WarikanGroup i : items) {
             double totalWeight = 0;
@@ -127,7 +135,9 @@ public class WarikanAdapter extends ArrayAdapter {
         }
     }
 
-    //重み最大値の役職者の支払金額
+    /**
+     * 重み最大値の役職者の支払金額
+     */
     public void calcPaymentMoney() {
         double money = 0;
         for (int i = 0; i < items.size(); i++) {
@@ -145,42 +155,75 @@ public class WarikanAdapter extends ArrayAdapter {
         }
     }
 
-    //単位の取得
+    /**
+     * 人数のリセット
+     */
+    public void peopleReset(){
+        for (WarikanGroup item : items) {
+            item.setNumOfPeople(0);
+        }
+    }
+
+    /**
+     * 単位の取得
+     * @return 単位
+     */
     public static int getUnit() {
         return unit;
     }
 
-    //単位をセット
+    /**
+     * 単位をセット
+     * @param unit 単位
+     */
     public static void setUnit(int unit) {
         WarikanAdapter.unit = unit;
     }
 
-    //会計総額の値セット
+    /**
+     * 会計総額の値セット
+     * @param accountingTotal 会計総額
+     */
     public static void setAccountingTotal(int accountingTotal) {
         WarikanAdapter.accountingTotal = accountingTotal;
     }
 
-    //会計総額の値取得
+    /**
+     * 会計総額の値取得
+     * @return 会計総額
+     */
     public static int getAccountingTotal() {
         return accountingTotal;
     }
 
-    //集金総額の値セット
+    /**
+     * 集金総額の値セット
+     * @param collectTotal 集金総額
+     */
     public static void setCollectTotal(int collectTotal) {
         WarikanAdapter.collectTotal = collectTotal;
     }
 
-    //集金総額の値取得
+    /**
+     * 集金総額の値取得
+     * @return 集金総額
+     */
     public static int getCollectTotal() {
         return collectTotal;
     }
 
-    //合計人数の値取得
+    /**
+     * 合計人数の値取得
+     * @return 合計人数
+     */
     public static int getNumOfPeople() {
         return numOfPeople;
     }
 
-    //集金総額の値取得
+    /**
+     * 差額の値取得
+     * @return 差額
+     */
     public static int getDiffMoney() {
         return diffMoney;
     }

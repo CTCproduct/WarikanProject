@@ -3,8 +3,10 @@ package com.example.ctc615017.warikancalculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,85 +26,57 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private static final String PREF_KEY = "Array";
     private WarikanGroup item;
+    private TextView acc_txt;
+    private TextView unit_num;
+    private TextView collectMoney_txt;
+    private TextView diff_num;
+    private TextView people_num;
+    private Button account_btn;
+    private Button reset_btn;
+    private Button config_btn;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView acc_txt = (TextView)findViewById(R.id.accountingTxt);
+        acc_txt = (TextView)findViewById(R.id.accountingTxt);
         acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
-        final TextView unit_num = (TextView)findViewById(R.id.unitNum);
+        unit_num = (TextView)findViewById(R.id.unitNum);
         unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
-        final TextView collectMoney_txt = (TextView)findViewById(R.id.collectMoney);
+        collectMoney_txt = (TextView)findViewById(R.id.collectMoney);
         collectMoney_txt.setText(Integer.toString(WarikanAdapter.getCollectTotal()));
-        final TextView people_num = (TextView)findViewById(R.id.peopleNum);
+        people_num = (TextView)findViewById(R.id.peopleNum);
         people_num.setText(Integer.toString(WarikanAdapter.getNumOfPeople()));
-        final TextView diff_num = (TextView)findViewById(R.id.differenceNumTxt);
+        diff_num = (TextView)findViewById(R.id.differenceNumTxt);
         diff_num.setText(Integer.toString(WarikanAdapter.getDiffMoney()));
 
-
-        Intent intent = getIntent();
-        if (!(intent.getStringExtra("key") == null)) {
-            key = Integer.valueOf(intent.getStringExtra("key"));
-            WarikanAdapter.setAccountingTotal(key);
-            acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
-            int diff = Integer.parseInt(collectMoney_txt.getText().toString()) - key;
-            diff_num.setText(Integer.toString(diff));
-        }
-
         //accountingBtnの取得
-        Button account_btn = (Button)findViewById(R.id.accountingBtn);
+        account_btn = (Button)findViewById(R.id.accountingBtn);
         account_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickChecker(account_btn);
                 Intent intent = new Intent(MainActivity.this, Calculator.class);
-                startActivity(intent);
+                int requestCode = 1001;
+                startActivityForResult(intent, requestCode);
             }
         });
 
-
-        //重み設定の取得
-        prefs = getSharedPreferences(PREF_KEY, Activity.MODE_PRIVATE);
-        WarikanPreference warikanPref = new WarikanPreference();
-        statusName = warikanPref.getArray("StringStatusItem", prefs);
-        weight = warikanPref.getArray("StringWeightItem", prefs);
-
-        this.list = new ArrayList();
-        for (int i = 0; i < statusName.length; i++) {
-            item = new WarikanGroup();
-            item.setStatusName(statusName[i]);
-            item.setWeight(Double.valueOf(weight[i]));
-            item.setSelected(true);
-            list.add(item);
-        }
-        //リストにアダプターを設定
-        adapter = new WarikanAdapter(this, R.layout.activity_main, list);
-        ListView listview = (ListView)findViewById(R.id.WarikanList);
-        listview.setAdapter(adapter);
-        adapter.setOnChangeSummaryListener(new WarikanAdapter.ChangeSummaryListener() {
-            @Override
-            public void onChengeSummary(int summary, int collectionTotal) {
-                //人数表示
-                people_num.setText(String.valueOf(summary));
-                //集金総額表示
-                collectMoney_txt.setText(String.valueOf(collectionTotal));
-                //差額表示
-                int diff = collectionTotal - key;
-                diff_num.setText(String.valueOf(diff));
-                adapter.notifyDataSetChanged();
-            }
-        });
+        //設定プリファレンス取得
+        getSetting();
 
         //resetBtnの取得
-        Button reset_btn = (Button)findViewById(R.id.resetBtn);
+        reset_btn = (Button)findViewById(R.id.resetBtn);
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 key = 0;
                 WarikanAdapter.setAccountingTotal(0);
                 acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
-                WarikanAdapter.setCollectTotal(0);
+                adapter.peopleReset();
+                adapter.setCollectTotal(0);
                 adapter.totalPaymentMoney();
                 adapter.calcPaymentMoney();
                 adapter.summaryCount();
@@ -143,14 +117,114 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //configBtnの取得
-        Button config_btn = (Button)findViewById(R.id.configBtn);
+        config_btn = (Button)findViewById(R.id.configBtn);
         config_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickChecker(config_btn);
                 Intent intent = new Intent(MainActivity.this, WarikanPreference.class);
-                startActivity(intent);
+                int requestCode = 1002;
+                startActivityForResult(intent, requestCode);
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSetting();
+    }
+
+    /**
+     * Activity間の値の受け渡し(返却値を受け取る)
+     * @param requestCode 識別コード
+     * @param resultCode 返却結果ステータス
+     * @param intent 返却intent
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // 返却結果ステータスとの比較
+        if (requestCode == 1001) {
+            if( resultCode == Activity.RESULT_OK ) {
+                // 返却されてきたintentから値を取り出す
+                if (intent.getStringExtra("key") != null) {
+                    key = Integer.valueOf(intent.getStringExtra("key"));
+                    WarikanAdapter.setAccountingTotal(key);
+                    acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
+                    int diff = Integer.parseInt(collectMoney_txt.getText().toString()) - key;
+                    diff_num.setText(Integer.toString(diff));
+                    adapter.peopleReset();
+                    adapter.totalPaymentMoney();
+                    adapter.calcPaymentMoney();
+                    adapter.summaryCount();
+                }
+            }
+        } else if (requestCode ==1002) {
+            if (resultCode == Activity.RESULT_OK) {
+                acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
+                int diff = Integer.parseInt(collectMoney_txt.getText().toString()) - key;
+                diff_num.setText(Integer.toString(diff));
+                adapter.peopleReset();
+                adapter.totalPaymentMoney();
+                adapter.calcPaymentMoney();
+                adapter.summaryCount();
+            }
+        }
+    }
+
+    /**
+     * 設定プリファレンス取得
+     */
+    private void getSetting(){
+        //重み設定の取得
+        prefs = getSharedPreferences(PREF_KEY, Activity.MODE_PRIVATE);
+        WarikanPreference warikanPref = new WarikanPreference();
+        statusName = warikanPref.getArray("StringStatusItem", prefs);
+        weight = warikanPref.getArray("StringWeightItem", prefs);
+
+        this.list = new ArrayList();
+        if (statusName != null) {
+            for (int i = 0; i < statusName.length; i++) {
+                item = new WarikanGroup();
+                item.setStatusName(statusName[i]);
+                item.setWeight(Double.valueOf(weight[i]));
+                item.setSelected(true);
+                list.add(item);
+            }
+        }
+        //リストにアダプターを設定
+        adapter = new WarikanAdapter(this, R.layout.activity_main, list);
+        ListView listview = (ListView)findViewById(R.id.WarikanList);
+        listview.setAdapter(adapter);
+        adapter.setOnChangeSummaryListener(new WarikanAdapter.ChangeSummaryListener() {
+            @Override
+            public void onChengeSummary(int summary, int collectionTotal) {
+                //人数表示
+                people_num.setText(String.valueOf(summary));
+                //集金総額表示
+                collectMoney_txt.setText(String.valueOf(collectionTotal));
+                //差額表示
+                int diff = collectionTotal - key;
+                diff_num.setText(String.valueOf(diff));
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    /**
+     * ボタン連打によるActivity複数起動の防止
+     * @param button 押下したボタン
+     */
+    private void clickChecker(Button button){
+        btn = button;
+        button.setEnabled(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn.setEnabled(true);
+            }
+        }, 1000L);
 
     }
 }

@@ -1,14 +1,17 @@
 package com.example.ctc615017.warikancalculator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 /**
  * Created by ctc615017 on 2016/02/25.
+ * 電卓機能クラス
  */
 public class Calculator extends AppCompatActivity {
     private int result = 0;
@@ -233,14 +236,19 @@ public class Calculator extends AppCompatActivity {
                 String someData = acc_txt.getText().toString();
                 Intent intent = new Intent(Calculator.this, MainActivity.class);
                 intent.putExtra("key", someData);
-                startActivity(intent);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
-
             }
         });
 
     }
 
+    /**
+     * 加算、減算処理
+     * @param operator ボタン
+     * @param value1 計算対象の数1
+     * @param value2 計算対象の数2
+     */
     public int calc(int operator, int value1, int value2) {
         switch (operator) {
             case R.id.plusBtn:
@@ -251,4 +259,5 @@ public class Calculator extends AppCompatActivity {
                 return value1;
         }
     }
+
 }

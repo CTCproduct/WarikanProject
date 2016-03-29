@@ -12,6 +12,7 @@
         android:text="0"
         android:id="@+id/accountingTxt"
         android:gravity="right"
+        android:maxLength="7"
         android:textSize="67sp" />
 
     <GridLayout
@@ -78,7 +79,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="25pt"
+            android:layout_height="27pt"
             android:text="@string/minus"
             android:id="@+id/minusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -141,7 +142,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="25pt"
+            android:layout_height="27pt"
             android:text="0"
             android:id="@+id/zeroBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -168,7 +169,7 @@
             android:layout_rowSpan="3"/>
 
         <Button
-            android:layout_height="80dp"
+            android:layout_height="90dp"
             android:text="@string/ok"
             android:id="@+id/okBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"

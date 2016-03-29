@@ -1,7 +1,7 @@
 package com.example.ctc615017.warikancalculator;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by ctc615017 on 2016/03/11.
+ * 設定画面クラス
  */
 public class WarikanPreference extends Activity {
     private static final String PREF_KEY = "Array";
@@ -57,12 +57,16 @@ public class WarikanPreference extends Activity {
                 String arrayStatusItem = conf_adapter.setStatusArray();
                 saveArray(arrayStatusItem, "StringStatusItem", prefs);
 
+                Intent intent = new Intent(WarikanPreference.this, MainActivity.class);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
     }
 
-    //リストのデータ
+    /**
+     * リストのデータ
+     */
     private void createData() {
         WarikanGroup item1 = new WarikanGroup();
         item1.setStatusName("社長");
@@ -105,21 +109,32 @@ public class WarikanPreference extends Activity {
         list.add(item10);
     }
 
-    //設定をeditorに保存
-    private void saveArray(String array, String PrefKey, SharedPreferences prefs) {
+    /**
+     * 設定をeditorに保存
+     * @param array 保存する文字列
+     * @param prefKey 設定キー
+     * @param prefs プリファレンス
+     */
+    private void saveArray(String array, String prefKey, SharedPreferences prefs) {
         String stringItem = null;
         if(!array.equals("")) {
             stringItem = array.substring(0, array.length() - 1);
             editor = prefs.edit();
-            editor.putString(PrefKey, stringItem).commit();
+            editor.putString(prefKey, stringItem).commit();
         } else {
             editor = prefs.edit();
-            editor.putString(PrefKey, "").commit();
+            editor.putString(prefKey, "").commit();
         }
     }
-    //設定の取得
-    public String[] getArray(String PrefKey, SharedPreferences prefs) {
-        String stringItem = prefs.getString(PrefKey,"");
+
+    /**
+     * 設定の取得
+     * @param prefKey 設定キー
+     * @param prefs プリファレンス
+     * @return 設定値またはnull
+     */
+    public String[] getArray(String prefKey, SharedPreferences prefs) {
+        String stringItem = prefs.getString(prefKey,"");
         if (stringItem != null && stringItem.length() != 0) {
             return stringItem.split(",");
         } else {

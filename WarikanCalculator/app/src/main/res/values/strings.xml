@@ -13,5 +13,7 @@
     <string name="plus">+</string>
     <string name="ok">OK</string>
     <string name="weight">重み設定</string>
+    <string name="up">▲</string>
+    <string name="down">▼</string>
 
 </resources>

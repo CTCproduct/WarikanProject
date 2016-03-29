@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ボタンが押されていない状態 -->
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <!-- 丸角 -->
+            <corners android:radius="8dp" />
+            <!-- グラデーション -->
+            <gradient
+                android:angle="90"
+                android:endColor="#d6dadc"
+                android:startColor="#b7bebf"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- ボタンが押された状態 -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!-- 丸角 -->
+            <corners android:radius="8dp" />
+            <!-- グラデーション -->
+            <gradient
+                android:angle="90"
+                android:endColor="#b7bebf"
+                android:startColor="#d6dadc"
+                android:type="linear" />
+        </shape>
+    </item>
+
+
+    <solid android:color="#cccccc" />
+
+</selector>
