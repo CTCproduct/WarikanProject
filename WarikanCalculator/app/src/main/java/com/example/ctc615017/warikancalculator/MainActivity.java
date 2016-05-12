@@ -69,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
         weight = warikanPref.getArray("StringWeightItem", prefs);
 
         this.list = new ArrayList();
-        for (int i = 0; i < statusName.length; i++) {
-            item = new WarikanGroup();
-            item.setStatusName(statusName[i]);
-            item.setWeight(Double.valueOf(weight[i]));
-            item.setSelected(true);
-            list.add(item);
+        if(statusName!=null) {
+            //statusNameがnullでなければリストを追加
+            for (int i = 0; i < statusName.length; i++) {
+                item = new WarikanGroup();
+                item.setStatusName(statusName[i]);
+                item.setWeight(Double.valueOf(weight[i]));
+                item.setSelected(true);
+                list.add(item);
+            }
         }
         //リストにアダプターを設定
         adapter = new WarikanAdapter(this, R.layout.activity_main, list);
