@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         weight = warikanPref.getArray("StringWeightItem", prefs);
 
         this.list = new ArrayList();
-        if(statusName!=null) {
+        if (statusName != null) {
             //statusNameがnullでなければリストを追加
             for (int i = 0; i < statusName.length; i++) {
                 item = new WarikanGroup();
