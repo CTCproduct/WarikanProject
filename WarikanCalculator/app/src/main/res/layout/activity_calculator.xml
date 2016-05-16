@@ -12,7 +12,8 @@
         android:text="0"
         android:id="@+id/accountingTxt"
         android:gravity="right"
-        android:textSize="67sp" />
+        android:textSize="67sp"
+        android:maxLength="10" />
 
     <GridLayout
         android:layout_width="wrap_content"
