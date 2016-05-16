@@ -20,163 +20,183 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:columnCount="4"
-        android:rowCount="6" >
+        android:rowCount="6"
+        android:layout_weight="1.5"
+        android:layout_marginTop="30dp">
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="←"
             android:id="@+id/backBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="0"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="175dp"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="C"
             android:id="@+id/clearBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="0"
             android:layout_column="1"
-            android:layout_columnSpan="2"/>
+            android:layout_columnSpan="2"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="@string/plus"
             android:id="@+id/plusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="0"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="1"
             android:id="@+id/oneBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="1"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="2"
             android:id="@+id/twoBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="1"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="3"
             android:id="@+id/threeBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="1"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="25pt"
+            android:layout_height="wrap_content"
             android:text="@string/minus"
             android:id="@+id/minusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="1"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="4"
             android:id="@+id/fourBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="2"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="5"
             android:id="@+id/fiveBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="2"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="6"
             android:id="@+id/sixBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="2"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="7"
             android:id="@+id/sevenBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="3"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="8"
             android:id="@+id/eightBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="3"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="9"
             android:id="@+id/nineBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="3"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="25pt"
+            android:layout_height="wrap_content"
             android:text="0"
             android:id="@+id/zeroBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="4"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:layout_rowWeight="1" />
 
         <Button
             android:layout_width="175dp"
-            android:layout_height="27pt"
+            android:layout_height="wrap_content"
             android:text="00"
             android:id="@+id/zero2Btn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_columnSpan="2"
             android:layout_row="4"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:layout_rowWeight="1" />
 
         <Button
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:text="="
             android:id="@+id/equalBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="2"
             android:layout_column="3"
-            android:layout_rowSpan="3"/>
+            android:layout_rowSpan="3"
+            android:layout_rowWeight="1" />
 
         <Button
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:text="@string/ok"
             android:id="@+id/okBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_row="5"
             android:layout_column="0"
             android:layout_columnSpan="4"
-            android:layout_width="350dp" />
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
     </GridLayout>
 
