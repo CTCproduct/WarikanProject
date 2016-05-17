@@ -2,6 +2,7 @@ package com.example.ctc615017.warikancalculator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +28,18 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Button operatorButton = (Button) view;
-                int value = Integer.parseInt(acc_txt.getText().toString());
+                int value;
+                try {
+                    value = Integer.parseInt(acc_txt.getText().toString());
+                }
+                catch(Exception e){
+                    new AlertDialog.Builder(Calculator.this)
+                            .setTitle("Error")
+                            .setMessage("値が大きすぎます。")
+                            .setPositiveButton("OK", null)
+                            .show();
+                    value = 0;
+                }
                 if (recentOperator == R.id.equalBtn) {
                     result = value;
                 } else {
