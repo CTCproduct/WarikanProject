@@ -243,10 +243,22 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String someData = acc_txt.getText().toString();
-                Intent intent = new Intent(Calculator.this, MainActivity.class);
-                intent.putExtra("key", someData);
-                startActivity(intent);
-                finish();
+                int value;
+                try {
+                    value = Integer.parseInt(someData);
+                    Intent intent = new Intent(Calculator.this, MainActivity.class);
+                    intent.putExtra("key", someData);
+                    startActivity(intent);
+                    finish();
+                }
+                catch(Exception e){
+                    new AlertDialog.Builder(Calculator.this)
+                            .setTitle("Error")
+                            .setMessage("値が大きすぎます。")
+                            .setPositiveButton("OK", null)
+                            .show();
+                    value = 0;
+                }
 
             }
         });
