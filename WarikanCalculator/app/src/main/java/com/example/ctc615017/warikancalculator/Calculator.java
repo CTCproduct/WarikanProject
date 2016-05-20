@@ -249,7 +249,8 @@ public class Calculator extends AppCompatActivity {
                     Intent intent = new Intent(Calculator.this, MainActivity.class);
                     intent.putExtra("key", someData);
                     startActivity(intent);
-                    finish();
+                    overridePendingTransition(R.anim.end2, R.anim.start2);
+                    //finish();
                 }
                 catch(Exception e){
                     new AlertDialog.Builder(Calculator.this)

@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Calculator.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.start, R.anim.end);
             }
         });
 
@@ -165,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WarikanPreference.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in_bottom, R.anim.out_top);
             }
         });
 

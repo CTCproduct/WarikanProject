@@ -2,6 +2,7 @@ package com.example.ctc615017.warikancalculator;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -57,7 +58,9 @@ public class WarikanPreference extends Activity {
                 String arrayStatusItem = conf_adapter.setStatusArray();
                 saveArray(arrayStatusItem, "StringStatusItem", prefs);
 
-                finish();
+                Intent intent = new Intent(WarikanPreference.this, MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.in_top, R.anim.out_bottom);
             }
         });
     }
