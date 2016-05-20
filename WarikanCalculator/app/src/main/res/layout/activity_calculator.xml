@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:weightSum="1"
-    android:padding="30px">
+    android:padding="30px"
+    android:contextClickable="false">
 
     <TextView
         android:layout_width="match_parent"

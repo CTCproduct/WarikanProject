@@ -22,7 +22,7 @@
             android:layout_weight="4"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:background="@drawable/maru" />
+            android:background="@drawable/maruButton" />
 
         <TextView
             android:layout_width="0dp"
@@ -177,7 +177,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="3"
             android:textColor="#000000"
-            android:background="@drawable/maru" />
+            android:background="@drawable/maruButton" />
 
         <TextView
             android:layout_width="0dp"
@@ -218,7 +218,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="2"
             android:textColor="#000000"
-            android:background="@drawable/maru" />
+            android:background="@drawable/maruButton" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -230,7 +230,7 @@
             android:layout_weight="2"
             android:textColor="#000000"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/maru" />
+            android:background="@drawable/maruButton" />
 
     </LinearLayout>
 </LinearLayout>

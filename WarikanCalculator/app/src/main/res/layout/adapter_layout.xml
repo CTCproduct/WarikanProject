@@ -51,7 +51,7 @@
                 android:textSize="30px"
                 android:text="▲"
                 android:id="@+id/peoplePlusBtn"
-                android:background="@drawable/maru"
+                android:background="@drawable/maruButton"
                 android:layout_marginBottom="3dp" />
 
             <Button
@@ -62,7 +62,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="▼"
                 android:id="@+id/peopleMinusBtn"
-                android:background="@drawable/maru" />
+                android:background="@drawable/maruButton" />
         </LinearLayout>
 
         <TextView
