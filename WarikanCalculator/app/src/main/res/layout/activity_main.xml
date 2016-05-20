@@ -95,13 +95,14 @@
             android:textColor="#fefefe" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/peopleNum"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="right"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="0dp"
@@ -123,7 +124,7 @@
             android:textColor="#fefefe" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/differenceNumTxt"
@@ -156,7 +157,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/WarikanList"
         android:layout_weight="1"
-        android:textColor="#fefefe"/>
+        android:textColor="#0000ff"/>
 
     <LinearLayout
         android:orientation="horizontal"
