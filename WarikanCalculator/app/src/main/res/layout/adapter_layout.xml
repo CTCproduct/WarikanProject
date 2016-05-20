@@ -50,7 +50,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="30px"
                 android:text="▲"
-                android:id="@+id/peoplePlusBtn" />
+                android:id="@+id/peoplePlusBtn"
+                android:background="@drawable/maru"
+                android:layout_marginBottom="3dp" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -59,7 +61,8 @@
                 android:textSize="30px"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="▼"
-                android:id="@+id/peopleMinusBtn" />
+                android:id="@+id/peopleMinusBtn"
+                android:background="@drawable/maru" />
         </LinearLayout>
 
         <TextView

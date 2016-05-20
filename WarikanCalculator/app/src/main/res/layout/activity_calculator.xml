@@ -14,7 +14,7 @@
         android:gravity="right"
         android:textSize="67sp"
         android:maxLength="10"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="0dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -226,22 +226,19 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_height="wrap_content"
-            android:text="@string/ok"
-            android:id="@+id/okBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_row="5"
-            android:layout_column="0"
-            android:layout_columnSpan="4"
-            android:layout_width="match_parent"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
-    </LinearLayout>
+    <Button
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:id="@+id/okBtn"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:layout_width="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/ok"
+        android:textColor="#000000" />
 
 </LinearLayout>
