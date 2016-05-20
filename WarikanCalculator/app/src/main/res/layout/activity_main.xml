@@ -5,7 +5,8 @@
     android:layout_height="fill_parent"
     android:weightSum="1"
     android:padding="30px"
-    android:background="@drawable/yukiti">
+    android:background="@drawable/cashtray"
+    android:id="@+id/background">
 
     <LinearLayout
         android:orientation="horizontal"

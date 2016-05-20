@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,11 +41,23 @@ public class MainActivity extends AppCompatActivity {
         people_num.setText(Integer.toString(WarikanAdapter.getNumOfPeople()));
         final TextView diff_num = (TextView)findViewById(R.id.differenceNumTxt);
         diff_num.setText(Integer.toString(WarikanAdapter.getDiffMoney()));
+        final LinearLayout background = (LinearLayout)findViewById(R.id.background);
 
+
+        background.setBackgroundResource(R.drawable.cashtray);//背景の変更
 
         Intent intent = getIntent();
         if (!(intent.getStringExtra("key") == null)) {
             key = Integer.valueOf(intent.getStringExtra("key"));
+            if(1000 <= key && key < 5000){
+                background.setBackgroundResource(R.drawable.noguti);//背景の変更
+            }
+            else if(5000<=key && key < 10000){
+                background.setBackgroundResource(R.drawable.higuti);//背景の変更
+            }
+            else if(10000 <= key){
+                background.setBackgroundResource(R.drawable.yukiti);//背景の変更
+            }
             WarikanAdapter.setAccountingTotal(key);
             acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
             int diff = Integer.parseInt(collectMoney_txt.getText().toString()) - key;
