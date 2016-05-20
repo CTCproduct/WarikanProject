@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:weightSum="1"
-    android:padding="30px">
+    android:padding="30px"
+    android:background="@drawable/yukiti">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -18,7 +19,8 @@
             android:id="@+id/accountingBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="2"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="175px"
@@ -27,7 +29,8 @@
             android:gravity="right"
             android:id="@+id/accountingTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="7" />
+            android:layout_weight="7"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +38,8 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
     <LinearLayout
@@ -51,7 +55,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="3"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="175px"
@@ -60,7 +65,8 @@
             android:gravity="right"
             android:id="@+id/collectMoney"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="7" />
+            android:layout_weight="7"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +74,8 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt2"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -84,7 +91,8 @@
             android:id="@+id/peopleNumTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="1"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="75px"
@@ -100,7 +108,8 @@
             android:text="@string/people"
             android:id="@+id/peopleTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +118,8 @@
             android:id="@+id/differenceTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="1"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="180px"
@@ -117,7 +127,8 @@
             android:text=""
             android:id="@+id/differenceNumTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="right" />
+            android:gravity="right"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,7 +136,8 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt3"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#fefefe" />
 
         <Button
             android:layout_width="wrap_content"
@@ -133,14 +145,16 @@
             android:text="@string/reset"
             android:id="@+id/resetBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/WarikanList"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="#fefefe"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -155,7 +169,8 @@
             android:text="@string/config"
             android:id="@+id/configBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.2"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -165,7 +180,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="0.2"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="75px"
@@ -174,7 +190,8 @@
             android:id="@+id/unitNum"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.4" />
+            android:layout_weight="0.4"
+            android:textColor="#fefefe" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -182,7 +199,8 @@
             android:text="@string/yen"
             android:id="@+id/unityenTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.2"
+            android:textColor="#fefefe" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -191,7 +209,8 @@
             android:text="@string/minus"
             android:id="@+id/unit_minusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.1"/>
+            android:layout_weight="0.1"
+            android:textColor="#000000" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -200,7 +219,8 @@
             android:text="@string/plus"
             android:id="@+id/unit_plusBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#000000" />
 
     </LinearLayout>
 </LinearLayout>
