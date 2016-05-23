@@ -159,7 +159,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/WarikanList"
         android:layout_weight="1"
-        android:textColor="#0000ff"/>
+        android:textColor="#0000ff"
+        android:background="@drawable/border"/>
 
     <LinearLayout
         android:orientation="horizontal"
