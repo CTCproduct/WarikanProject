@@ -206,7 +206,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="2"
             android:textColor="#000000"
-            android:background="@drawable/_kaemasu" />
+            android:background="@drawable/marubutton" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -218,7 +218,7 @@
             android:layout_weight="2"
             android:textColor="#000000"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/_kaemasu" />
+            android:background="@drawable/marubutton" />
 
     </LinearLayout>
 
@@ -235,7 +235,7 @@
             android:id="@+id/accountingBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="3"
-            android:background="@drawable/_kaemasu"
+            android:background="@drawable/marubutton"
             android:layout_marginRight="5dp"
             android:textColor="#000000" />
 
@@ -247,7 +247,7 @@
             android:id="@+id/configBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_weight="3"
-            android:background="@drawable/_kaemasu"
+            android:background="@drawable/marubutton"
             android:layout_marginRight="5dp"
             android:textColor="#000000" />
 
