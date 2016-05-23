@@ -6,6 +6,7 @@
     <string name="people">人</string>
     <string name="num_of_people">人数</string>
     <string name="diff_money">差額</string>
+    <string name="amount">金額入力</string>
     <string name="reset">リセット</string>
     <string name="config">設定</string>
     <string name="unit">単位</string>
