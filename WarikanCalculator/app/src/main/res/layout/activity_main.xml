@@ -160,7 +160,9 @@
         android:id="@+id/WarikanList"
         android:layout_weight="1"
         android:textColor="#0000ff"
-        android:background="@drawable/border"/>
+        android:background="@drawable/border"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp" />
 
     <LinearLayout
         android:orientation="horizontal"
