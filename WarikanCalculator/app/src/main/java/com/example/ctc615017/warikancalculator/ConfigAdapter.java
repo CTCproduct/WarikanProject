@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by ctc615017 on 2016/02/29.
  */
 public class ConfigAdapter extends ArrayAdapter {
-    private ArrayList<WarikanGroup> items;
+    public ArrayList<WarikanGroup> items;
     private LayoutInflater inflater;
     private TextView weight_txt;
     private Button weightPlus_btn;

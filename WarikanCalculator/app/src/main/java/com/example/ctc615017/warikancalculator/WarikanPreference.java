@@ -1,7 +1,6 @@
 package com.example.ctc615017.warikancalculator;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by ctc615017 on 2016/03/11.
@@ -20,6 +18,7 @@ public class WarikanPreference extends Activity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Button ok_btn;
+    Button reset_btn;
     private ArrayList<WarikanGroup> list = new ArrayList();
     //ConfigAdapter
     private ConfigAdapter conf_adapter = null;
@@ -61,6 +60,20 @@ public class WarikanPreference extends Activity {
                 Intent intent = new Intent(WarikanPreference.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.in_top, R.anim.out_bottom);
+            }
+        });
+
+        //resetBtnの取得
+        reset_btn = (Button) findViewById(R.id.resetBtn);
+        reset_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < conf_adapter.getCount(); i++) {
+                    WarikanGroup item = conf_adapter.items.get(i);
+                    item.setSelected(false);
+                }
+                conf_adapter.notifyDataSetChanged();
+
             }
         });
     }
