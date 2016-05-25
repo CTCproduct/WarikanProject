@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         diff_num.setText(Integer.toString(WarikanAdapter.getDiffMoney()));
         final LinearLayout background = (LinearLayout)findViewById(R.id.background);
 
-
         background.setBackgroundResource(R.drawable.cashtray);//背景の変更
 
         Intent intent = getIntent();
@@ -74,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.start, R.anim.end);
             }
         });
-
 
         //重み設定の取得
         prefs = getSharedPreferences(PREF_KEY, Activity.MODE_PRIVATE);
@@ -120,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 WarikanAdapter.setAccountingTotal(0);
                 acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
                 WarikanAdapter.setCollectTotal(0);
+                WarikanAdapter.delNumOfPeople();
                 adapter.totalPaymentMoney();
                 adapter.calcPaymentMoney();
                 adapter.summaryCount();
@@ -169,6 +168,5 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.in_bottom, R.anim.out_top);
             }
         });
-
     }
 }

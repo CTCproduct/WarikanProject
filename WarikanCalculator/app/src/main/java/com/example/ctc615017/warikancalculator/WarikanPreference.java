@@ -68,12 +68,10 @@ public class WarikanPreference extends Activity {
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < conf_adapter.getCount(); i++) {
-                    WarikanGroup item = conf_adapter.items.get(i);
+                for (WarikanGroup item : list) {
                     item.setSelected(false);
                 }
                 conf_adapter.notifyDataSetChanged();
-
             }
         });
     }

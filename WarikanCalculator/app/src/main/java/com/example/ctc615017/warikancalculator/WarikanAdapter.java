@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by ctc615017 on 2016/02/29.
  */
 public class WarikanAdapter extends ArrayAdapter {
-    private ArrayList<WarikanGroup> items;
+    private static ArrayList<WarikanGroup> items;
     private LayoutInflater inflater;
     private static int unit = 1;
     private static int accountingTotal = 0;
@@ -142,6 +142,13 @@ public class WarikanAdapter extends ArrayAdapter {
             } else if (items.get(i).getNumOfPeople() == 0) {
                 items.get(i).setAmountOfMoney(0);
             }
+        }
+    }
+
+    //人数をリセット
+    public static void delNumOfPeople() {
+        for (WarikanGroup item : items) {
+            item.setNumOfPeople(0);
         }
     }
 
