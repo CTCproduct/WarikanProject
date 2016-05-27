@@ -6,14 +6,18 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    protected int unit = 0;
     //リスト
     private ArrayList<WarikanGroup> list = null;
     //WarikanAdapter
@@ -33,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView acc_txt = (TextView)findViewById(R.id.accountingTxt);
         acc_txt.setText(Integer.toString(WarikanAdapter.getAccountingTotal()));
-        final TextView unit_num = (TextView)findViewById(R.id.unitNum);
-        unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
         final TextView collectMoney_txt = (TextView)findViewById(R.id.collectMoney);
         collectMoney_txt.setText(Integer.toString(WarikanAdapter.getCollectTotal()));
         final TextView people_num = (TextView)findViewById(R.id.peopleNum);
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView diff_num = (TextView)findViewById(R.id.differenceNumTxt);
         diff_num.setText(Integer.toString(WarikanAdapter.getDiffMoney()));
         final LinearLayout background = (LinearLayout)findViewById(R.id.background);
-
         background.setBackgroundResource(R.drawable.cashtray);//背景の変更
+        final Spinner unitSpinner = (Spinner) findViewById(R.id.unitSpinner);
 
         Intent intent = getIntent();
         if (!(intent.getStringExtra("key") == null)) {
@@ -126,35 +128,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //unit_minusBtnの取得
-        Button uniMin_btn = (Button)findViewById(R.id.unit_minusBtn);
-        uniMin_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (WarikanAdapter.getUnit() != 1) {
-                    WarikanAdapter.setUnit(WarikanAdapter.getUnit() / 10);
-                    unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
-                    adapter.totalPaymentMoney();
-                    adapter.calcPaymentMoney();
-                    adapter.summaryCount();
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
+        // 単位設定用Spinner
+        ArrayAdapter<String> unitAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item,
+                getResources().getStringArray(R.array.spinner_list));
+        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitSpinner.setAdapter(unitAdapter);
 
-        //unit_plusBtnの取得
-        Button uniPlu_btn = (Button)findViewById(R.id.unit_plusBtn);
-        uniPlu_btn.setOnClickListener(new View.OnClickListener() {
+        unitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                if (WarikanAdapter.getUnit() != 1000) {
-                    WarikanAdapter.setUnit(WarikanAdapter.getUnit() * 10);
-                    unit_num.setText(Integer.toString(WarikanAdapter.getUnit()));
-                    adapter.totalPaymentMoney();
-                    adapter.calcPaymentMoney();
-                    adapter.summaryCount();
-                    adapter.notifyDataSetChanged();
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Spinner spinner = (Spinner)parent;
+                unit = Integer.parseInt(spinner.getSelectedItem().toString());
+                adapter.setUnit(unit);
+                adapter.totalPaymentMoney();
+                adapter.calcPaymentMoney();
+                adapter.summaryCount();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 

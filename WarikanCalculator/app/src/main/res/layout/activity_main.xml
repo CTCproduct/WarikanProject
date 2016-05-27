@@ -20,7 +20,6 @@
             android:text="@string/acc_total"
             android:id="@+id/textView"
             android:textColor="#fefefe"
-            android:layout_weight="5"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
             android:textSize="21dp"
@@ -33,9 +32,9 @@
             android:gravity="right"
             android:id="@+id/accountingTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="4"
             android:textColor="#ffffff"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,42 +42,19 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"
             android:textColor="#ffffff"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            style="1" />
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/num_of_people"
-            android:id="@+id/peopleNumTxt"
+            android:text="@string/amount"
+            android:id="@+id/accountingBtn"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textColor="#fefefe"
-            android:layout_marginLeft="20dp"
-            android:textSize="21dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/peopleNum"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:gravity="right"
-            android:layout_weight="3"
-            android:textColor="#ffffff"
-            android:textSize="21dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/people"
-            android:id="@+id/peopleTxt"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.5"
-            android:textColor="#fefefe"
-            android:textSize="21dp" />
+            android:background="@drawable/marubutton"
+            android:textColor="#000000"
+            android:layout_marginLeft="25dp" />
 
     </LinearLayout>
     <LinearLayout
@@ -93,7 +69,6 @@
             android:text="@string/collect_total"
             android:id="@+id/moneyTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="5"
             android:textStyle="bold"
             android:textColor="#fefefe"
             android:textSize="21dp"
@@ -106,9 +81,9 @@
             android:gravity="right"
             android:id="@+id/collectMoney"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="4"
             android:textColor="#ffffff"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,9 +91,26 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt2"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"
             android:textColor="#ffffff"
             android:textSize="21dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/config"
+            android:id="@+id/configBtn"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@drawable/marubutton"
+            android:textColor="#000000"
+            android:layout_marginLeft="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,11 +118,10 @@
             android:text="@string/diff_money"
             android:id="@+id/differenceTxt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"
             android:textStyle="bold"
             android:textColor="#fefefe"
-            android:layout_marginLeft="20dp"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -139,8 +130,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="right"
             android:textColor="#fefefe"
-            android:layout_weight="3"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            android:layout_weight="2.5" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,10 +139,39 @@
             android:text="@string/yen"
             android:id="@+id/yenTxt3"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="0.5"
             android:textColor="#fefefe"
             android:textSize="21dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_of_people"
+            android:id="@+id/peopleNumTxt"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:textColor="#fefefe"
+            android:textSize="21dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/peopleNum"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:textSize="21dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/people"
+            android:id="@+id/peopleTxt"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#fefefe"
+            android:textSize="21dp" />
     </LinearLayout>
 
     <ListView
@@ -170,58 +190,37 @@
         android:layout_height="wrap_content"
         android:padding="30px">
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/reset"
+            android:id="@+id/resetBtn"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_weight="2"
+            android:textColor="#000000"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/marubutton"
+            style="?android:attr/buttonStyleSmall" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/unit"
             android:id="@+id/unitTxt"
-            android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:textStyle="bold"
-            android:textColor="#fefefe" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/unitNum"
+            android:textColor="#fefefe"
+            android:layout_gravity="center_vertical"
             android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="4"
-            android:textColor="#fefefe" />
+            android:paddingRight="10dp" />
 
-        <TextView
+        <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/yen"
-            android:id="@+id/unityenTxt"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="1"
-            android:textColor="#fefefe" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/minus"
-            android:id="@+id/unit_minusBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="2"
-            android:textColor="#000000"
-            android:background="@drawable/marubutton" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/plus"
-            android:id="@+id/unit_plusBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="2"
-            android:textColor="#000000"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/marubutton" />
+            android:id="@+id/unitSpinner"
+            android:background="@android:drawable/spinner_background"
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -231,37 +230,5 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/amount"
-            android:id="@+id/accountingBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="3"
-            android:background="@drawable/marubutton"
-            android:layout_marginRight="5dp"
-            android:textColor="#000000" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/config"
-            android:id="@+id/configBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="3"
-            android:background="@drawable/marubutton"
-            android:layout_marginRight="5dp"
-            android:textColor="#000000" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/reset"
-            android:id="@+id/resetBtn"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_weight="3"
-            android:background="@drawable/reset"
-            android:textColor="#000000" />
     </LinearLayout>
 </LinearLayout>
