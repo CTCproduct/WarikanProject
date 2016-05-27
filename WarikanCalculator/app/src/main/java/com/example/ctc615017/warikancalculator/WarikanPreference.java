@@ -19,6 +19,7 @@ public class WarikanPreference extends Activity {
     SharedPreferences.Editor editor;
     Button ok_btn;
     Button reset_btn;
+    private String key;
     private ArrayList<WarikanGroup> list = new ArrayList();
     //ConfigAdapter
     private ConfigAdapter conf_adapter = null;
@@ -34,6 +35,11 @@ public class WarikanPreference extends Activity {
 
         arrayItem = getArray("StringStatusItem", prefs);
         arrayItem2 = getArray("StringWeightItem", prefs);
+
+        Intent intent = getIntent();
+        if ( !(intent.getStringExtra("acc") == null) ) {
+            key = intent.getStringExtra("acc");
+        }
 
         //conf_adapter設定
         createData();
@@ -58,6 +64,7 @@ public class WarikanPreference extends Activity {
                 saveArray(arrayStatusItem, "StringStatusItem", prefs);
 
                 Intent intent = new Intent(WarikanPreference.this, MainActivity.class);
+                intent.putExtra("key", key);
                 startActivity(intent);
                 overridePendingTransition(R.anim.in_top, R.anim.out_bottom);
             }

@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WarikanPreference.class);
+                intent.putExtra("acc", String.valueOf(key));
                 startActivity(intent);
                 overridePendingTransition(R.anim.in_bottom, R.anim.out_top);
             }
